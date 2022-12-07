@@ -1,22 +1,30 @@
 package com.example.mimedicokotlin.ui.signup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import com.example.mimedicokotlin.databinding.ActivitySignupBinding
+import androidx.fragment.app.Fragment
+import com.example.mimedicokotlin.databinding.FragmentSignupBinding
 
-class SignupActivity : AppCompatActivity() {
+class SignupFragment : Fragment() {
 
     private var viewModel: SignupViewModel = SignupViewModel()
-    private lateinit var binding: ActivitySignupBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivitySignupBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    private var _binding: FragmentSignupBinding? = null
+    private val binding get() = _binding!!
 
-        viewModel.signupForm.observe(this){
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentSignupBinding.inflate(inflater, container, false)
+
+        viewModel.signupForm.observe(viewLifecycleOwner){
             if(it.usernameError != null){
                 binding.signupUsername.error = "Username debe ser mayor de 3 y menor de 15 caracteres"
             }
@@ -32,8 +40,8 @@ class SignupActivity : AppCompatActivity() {
             binding.signupAction.isEnabled = it.isDataValid
         }
 
-        viewModel.signupResult.observe(this) {
-            if (it) Toast.makeText(this@SignupActivity, "Registro Correcto", Toast.LENGTH_LONG)
+        viewModel.signupResult.observe(viewLifecycleOwner) {
+            if (it) Toast.makeText(activity, "Registro Correcto", Toast.LENGTH_LONG)
                 .show()
         }
 
@@ -58,6 +66,13 @@ class SignupActivity : AppCompatActivity() {
         }
 
         binding.signupAction.isEnabled = false
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     fun signup(){
