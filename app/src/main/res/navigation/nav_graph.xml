@@ -23,6 +23,16 @@
         android:name="com.example.mimedicokotlin.ui.signup.SignupFragment"
         android:label="SignupFragment"
         tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_SignupFragment_to_SignupSuccessFragment"
+            app:destination="@id/SignupSuccessFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignupSuccessFragment"
+        android:name="com.example.mimedicokotlin.ui.signup.SignupSuccessFragment"
+        android:label="SignupSuccessFragment"
+        tools:layout="@layout/fragment_signup_success">
     </fragment>
 
     <fragment

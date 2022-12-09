@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentSignupBinding
 
 class SignupFragment : Fragment() {
@@ -25,8 +27,11 @@ class SignupFragment : Fragment() {
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
 
         viewModel.signupForm.observe(viewLifecycleOwner){
-            if(it.usernameError != null){
-                binding.signupUsername.error = "Username debe ser mayor de 3 y menor de 15 caracteres"
+            if(it.firstnameError != null){
+                binding.signupFirstname.error = "El nombre no debe estar vacio"
+            }
+            if(it.lastnameError != null){
+                binding.signupLastname.error = "Los apellidos no debe estar vacio"
             }
             if(it.emailError != null){
                 binding.signupEmail.error = "El email debe ser valido"
@@ -41,26 +46,33 @@ class SignupFragment : Fragment() {
         }
 
         viewModel.signupResult.observe(viewLifecycleOwner) {
-            if (it) Toast.makeText(activity, "Registro Correcto", Toast.LENGTH_LONG)
-                .show()
+            if (it) {
+                Toast.makeText(activity, "Registro Correcto", Toast.LENGTH_LONG)
+                    .show()
+                val nav = findNavController()
+                nav.popBackStack()
+                nav.navigate(R.id.SignupSuccessFragment)
+            }else {
+                Toast.makeText(activity, "Error, no se pudo registrar", Toast.LENGTH_LONG)
+                    .show()
+            }
         }
 
-        binding.signupUsername.addTextChangedListener {
+        binding.signupFirstname.addTextChangedListener {
             checkData()
         }
-
+        binding.signupLastname.addTextChangedListener{
+            checkData()
+        }
         binding.signupEmail.addTextChangedListener {
             checkData()
         }
-
         binding.signupCurp.addTextChangedListener {
             checkData()
         }
-
         binding.signupPassword.addTextChangedListener {
             checkData()
         }
-
         binding.signupAction.setOnClickListener {
             signup()
         }
@@ -77,7 +89,8 @@ class SignupFragment : Fragment() {
 
     fun signup(){
         viewModel.singup(
-            binding.signupUsername.text.toString(),
+            binding.signupFirstname.text.toString(),
+            binding.signupLastname.text.toString(),
             binding.signupEmail.text.toString(),
             binding.signupCurp.text.toString(),
             binding.signupPassword.text.toString())
@@ -85,7 +98,8 @@ class SignupFragment : Fragment() {
 
     fun checkData(){
         viewModel.checkData(
-            binding.signupUsername.text.toString(),
+            binding.signupFirstname.text.toString(),
+            binding.signupLastname.text.toString(),
             binding.signupEmail.text.toString(),
             binding.signupCurp.text.toString(),
             binding.signupPassword.text.toString())

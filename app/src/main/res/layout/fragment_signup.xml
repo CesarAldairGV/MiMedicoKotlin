@@ -10,34 +10,58 @@
         android:id="@+id/signup_banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:text="Registro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/signup_username_text"
+        android:id="@+id/signup_firstname_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Username: "
+        android:text="Nombres: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_banner" />
 
     <EditText
-        android:id="@+id/signup_username"
+        android:id="@+id/signup_firstname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="John"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_username_text" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_firstname_text" />
+
+
+    <TextView
+        android:id="@+id/signup_lastname_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Apellidos: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_firstname" />
+
+    <EditText
+        android:id="@+id/signup_lastname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="Romero"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_lastname_text" />
 
     <TextView
         android:id="@+id/signup_email_text"
@@ -47,7 +71,7 @@
         android:layout_marginTop="20dp"
         android:text="Email: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_username" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_lastname" />
 
     <EditText
         android:id="@+id/signup_email"
@@ -57,8 +81,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
         android:hint="john@gmail.com"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_email_text" />
@@ -81,8 +105,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="JARB0101200174982364"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_curp_text" />
@@ -105,8 +129,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="Contraseña"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_password_text" />
