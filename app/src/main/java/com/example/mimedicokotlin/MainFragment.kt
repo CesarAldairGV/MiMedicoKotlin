@@ -35,6 +35,10 @@ class MainFragment : Fragment() {
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_SignupFragment)
         }
+
+        binding.button.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFragment_to_LoginFragment)
+        }
     }
 
     override fun onDestroyView() {

@@ -83,8 +83,9 @@ class SignupViewModel: ViewModel() {
         if (!checkPassword(password)){
             passwordError = 1
         }
-        if(firstnameError == null && emailError == null &&
-            curpError == null && passwordError == null){
+        if(firstnameError == null && lastnameError == null &&
+            emailError == null && curpError == null &&
+            passwordError == null){
             isDataValid = true
         }
         _signupForm.value = SignupFormState(firstnameError, lastnameError, emailError, curpError, passwordError, isDataValid)

@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="com.example.mimedicokotlin.LoginFragment"
+        android:name="com.example.mimedicokotlin.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
     </fragment>
