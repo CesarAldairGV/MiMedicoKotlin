@@ -1,5 +1,6 @@
 package com.example.mimedicokotlin.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 import com.example.mimedicokotlin.databinding.FragmentLoginBinding
-import kotlin.math.log
+import com.example.mimedicokotlin.ui.home.HomeActivity
 
 class LoginFragment : Fragment() {
 
@@ -30,7 +32,6 @@ class LoginFragment : Fragment() {
             if(it.passwordError != null){
                 binding.loginPassword.error = "La contraseña debe ser valida"
             }
-
             binding.loginAction.isEnabled = it.isDataValid
         }
 
@@ -40,9 +41,9 @@ class LoginFragment : Fragment() {
             }else if(it.loginError == 2){
                 Toast.makeText(activity, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
             }
-
             if(it.loginSuccess){
-                Toast.makeText(activity, "Login Correcto", Toast.LENGTH_LONG).show()
+                val intent = Intent(activity, HomeActivity::class.java)
+                startActivity(intent)
             }
         }
 

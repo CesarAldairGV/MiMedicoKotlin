@@ -5,8 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginViewModel : ViewModel(){
+
+    private val TAG = "LoginViewModel"
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginForm : LiveData<LoginFormState> get() = _loginForm
@@ -15,6 +18,7 @@ class LoginViewModel : ViewModel(){
     val loginResult : LiveData<LoginResult> get() = _loginResult
 
     private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var firebaseFirestore: FirebaseFirestore
 
     private fun checkEmail(email: String): Boolean{
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -36,6 +40,7 @@ class LoginViewModel : ViewModel(){
 
     fun login(email: String, password: String){
         firebaseAuth = FirebaseAuth.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             if(!it.user!!.isEmailVerified){
                 _loginResult.value = LoginResult(loginError = 1)
