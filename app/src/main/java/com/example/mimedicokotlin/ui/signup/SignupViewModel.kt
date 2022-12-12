@@ -25,9 +25,11 @@ class SignupViewModel: ViewModel() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseStore = FirebaseFirestore.getInstance()
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+            val userId = it.user!!.uid
             it.user!!.sendEmailVerification().addOnSuccessListener {
                 firebaseStore.collection("users")
-                    .add(hashMapOf(
+                    .document(userId)
+                    .set(hashMapOf(
                         "firstname" to firstname,
                         "lastname" to lastname,
                         "email" to email,

@@ -17,13 +17,13 @@ class HomeViewModel {
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseFirestore = FirebaseFirestore.getInstance()
 
-        val email = firebaseAuth.currentUser?.email
+        val userId = firebaseAuth.currentUser!!.uid
 
         firebaseFirestore.collection("users")
-            .whereEqualTo("email",email)
+            .document(userId)
             .get()
             .addOnSuccessListener {
-                val data = it.documents[0].data
+                val data = it.data
                 val name = "${data?.get("firstname").toString()} ${data?.get("lastname").toString()}"
                 val email = data?.get("email").toString()
                 val curp = data?.get("curp").toString()
