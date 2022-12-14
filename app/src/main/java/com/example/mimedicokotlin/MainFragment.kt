@@ -8,15 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.mimedicokotlin.databinding.FragmentMainBinding
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(

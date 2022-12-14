@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.navigation.fragment.findNavController
 import com.example.mimedicokotlin.databinding.FragmentLoginBinding
 import com.example.mimedicokotlin.ui.home.HomeActivity
 

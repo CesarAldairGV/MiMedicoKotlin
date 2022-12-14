@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_graph"
+    app:startDestination="@id/HomeFragment">
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.example.mimedicokotlin.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/PetitionsFragment"
+        android:name="com.example.mimedicokotlin.ui.petitions.PetitionsFragment"
+        android:label="Petitions"
+        tools:layout="@layout/fragment_petitions">
+    <action
+        android:id="@+id/action_PetitionsFragment_to_AddPetitionFragment"
+        app:destination="@id/AddPetitionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddPetitionFragment"
+        android:name="com.example.mimedicokotlin.ui.petitions.add.AddPetitionFragment"
+        android:label="Add Petition"
+        tools:layout="@layout/fragment_add_petition" />
+
+    <fragment
+        android:id="@+id/ConsultsFragment"
+        android:name="com.example.mimedicokotlin.ui.consults.ConsultsFragment"
+        android:label="Consults"
+        tools:layout="@layout/fragment_consults" />
+
+    <action
+        android:id="@+id/action_to_HomeFragment"
+        app:destination="@id/HomeFragment" />
+
+    <action
+        android:id="@+id/action_to_PetitionsFragment"
+        app:destination="@id/PetitionsFragment" />
+
+    <action
+        android:id="@+id/action_to_ConsultsFragment"
+        app:destination="@id/ConsultsFragment" />
+
+</navigation>

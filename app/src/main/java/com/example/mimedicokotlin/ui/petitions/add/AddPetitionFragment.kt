@@ -1,24 +1,23 @@
-package com.example.mimedicokotlin.ui.signup
+package com.example.mimedicokotlin.ui.petitions.add
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.mimedicokotlin.databinding.FragmentSignupSuccessBinding
+import com.example.mimedicokotlin.databinding.FragmentAddPetitionBinding
 
 
-class SignupSuccessFragment : Fragment() {
+class AddPetitionFragment : Fragment() {
 
-    private var _binding: FragmentSignupSuccessBinding? = null
+    private var _binding: FragmentAddPetitionBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentSignupSuccessBinding.inflate(inflater, container, false)
+        _binding = FragmentAddPetitionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
