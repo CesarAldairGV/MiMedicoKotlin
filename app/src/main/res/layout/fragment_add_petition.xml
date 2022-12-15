@@ -94,15 +94,26 @@
         app:layout_constraintStart_toEndOf="@+id/addp_image_button"
         app:layout_constraintTop_toBottomOf="@+id/addp_body" />
 
-    <Button
+<!--    <Button-->
+<!--        android:id="@+id/addp_button_action"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:text="Enviar Peticion"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/addp_image" />-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addp_button_action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Enviar Peticion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addp_image" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:accessibilityHeading="false"
+        android:src="@android:drawable/ic_menu_send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

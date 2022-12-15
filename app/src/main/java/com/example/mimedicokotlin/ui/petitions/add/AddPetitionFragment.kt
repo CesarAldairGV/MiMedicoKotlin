@@ -32,6 +32,14 @@ class AddPetitionFragment : Fragment() {
     ): View? {
         _binding = FragmentAddPetitionBinding.inflate(inflater, container, false)
 
+        val subjectWatcher = binding.addpSubject.doAfterTextChanged {
+            checkData()
+        }
+
+        val bodyWatcher = binding.addpBody.doAfterTextChanged {
+            checkData()
+        }
+
         viewModel.formState.observe(viewLifecycleOwner){
             if(it.subjectError == 1){
                 binding.addpSubject.error = "Debe contener entre 5 y 30 caracteres"
@@ -45,22 +53,18 @@ class AddPetitionFragment : Fragment() {
         viewModel.resultState.observe(viewLifecycleOwner){
             if(it){
                 Toast.makeText(activity, "Peticion enviada correctamente", Toast.LENGTH_LONG).show()
+                binding.addpSubject.removeTextChangedListener(subjectWatcher)
+                binding.addpBody.removeTextChangedListener(bodyWatcher)
                 binding.addpSubject.text.clear()
                 binding.addpBody.text.clear()
                 binding.addpImage.setImageResource(R.drawable.ic_launcher_background)
                 binding.addpButtonAction.isEnabled = false
                 isImageSelected = false
+                binding.addpSubject.addTextChangedListener(subjectWatcher)
+                binding.addpBody.addTextChangedListener(bodyWatcher)
             }else{
                 Toast.makeText(activity, "Ocurrio un error inesperado", Toast.LENGTH_LONG).show()
             }
-        }
-
-        binding.addpSubject.doAfterTextChanged {
-            checkData()
-        }
-
-        binding.addpBody.doAfterTextChanged {
-            checkData()
         }
 
         binding.addpImageButton.setOnClickListener {
