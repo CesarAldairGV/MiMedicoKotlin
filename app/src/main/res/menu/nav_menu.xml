@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/HomeFragment"
-        android:title="Home" />
-    <item android:id="@+id/PetitionsFragment"
         android:title="Perfil" />
+    <item android:id="@+id/PetitionsFragment"
+        android:title="Mis peticiones" />
     <item android:id="@+id/ConsultsFragment"
         android:title="Consultas" />
 </menu>
