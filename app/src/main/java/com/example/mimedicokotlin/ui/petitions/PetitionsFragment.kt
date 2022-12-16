@@ -25,12 +25,12 @@ class PetitionsFragment : Fragment() {
 
         viewModel.petitions.observe(viewLifecycleOwner){
             val petitionsAdapter = PetitionsAdapter(it,requireContext())
-            val reciclerView = binding.petitionsList
+            val recyclerView = binding.petitionsList
             val linearLayoutManager = LinearLayoutManager(requireContext())
             linearLayoutManager.reverseLayout = true
             linearLayoutManager.stackFromEnd = true
-            reciclerView.layoutManager = linearLayoutManager
-            reciclerView.adapter = petitionsAdapter
+            recyclerView.layoutManager = linearLayoutManager
+            recyclerView.adapter = petitionsAdapter
         }
 
         binding.petitionsAddButton.setOnClickListener {

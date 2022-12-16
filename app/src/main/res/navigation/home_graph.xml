@@ -19,13 +19,26 @@
     <action
         android:id="@+id/action_PetitionsFragment_to_AddPetitionFragment"
         app:destination="@id/AddPetitionFragment" />
+        <action
+            android:id="@+id/action_PetitionsFragment_to_ProposalsFragment"
+            app:destination="@id/ProposalsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/AddPetitionFragment"
-        android:name="com.example.mimedicokotlin.ui.petitions.add.AddPetitionFragment"
+        android:name="com.example.mimedicokotlin.ui.addpetition.AddPetitionFragment"
         android:label="Add Petition"
         tools:layout="@layout/fragment_add_petition" />
+
+    <fragment
+        android:id="@+id/ProposalsFragment"
+        android:name="com.example.mimedicokotlin.ui.proposals.ProposalsFragment"
+        android:label="Proposals"
+        tools:layout="@layout/fragment_proposals" >
+        <argument
+            android:name="petitionId"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/ConsultsFragment"

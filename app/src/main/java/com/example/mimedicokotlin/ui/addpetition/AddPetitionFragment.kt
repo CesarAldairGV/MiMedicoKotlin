@@ -1,4 +1,4 @@
-package com.example.mimedicokotlin.ui.petitions.add
+package com.example.mimedicokotlin.ui.addpetition
 
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle

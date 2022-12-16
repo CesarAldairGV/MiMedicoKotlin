@@ -1,4 +1,4 @@
-package com.example.mimedicokotlin.ui.petitions.add
+package com.example.mimedicokotlin.ui.addpetition
 
 data class AddPetitionFormState(
     val subjectError: Int? = null,

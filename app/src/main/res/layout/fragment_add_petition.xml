@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.petitions.add.AddPetitionFragment">
+    tools:context=".ui.addpetition.AddPetitionFragment">
 
 
     <TextView
@@ -88,9 +88,11 @@
         android:id="@+id/addp_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
         android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addp_image_button"
         app:layout_constraintTop_toBottomOf="@+id/addp_body" />
 

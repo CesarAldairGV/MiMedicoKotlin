@@ -26,7 +26,9 @@ class PetitionsViewModel {
                 val docs = value!!.documents.iterator()
                 while(docs.hasNext()){
                     val obj = docs.next()
-                    val petition = Petition(obj["subject",String::class.java]!!,
+                    val petition = Petition(
+                        obj.id,
+                        obj["subject",String::class.java]!!,
                         obj["date",String::class.java]!!,
                         obj["body",String::class.java]!!,
                         obj["urlPhoto",String::class.java])

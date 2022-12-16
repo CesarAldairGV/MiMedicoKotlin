@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mimedicokotlin.R
 import com.squareup.picasso.Picasso
@@ -28,6 +30,11 @@ class PetitionsAdapter(
             body.text = petition.body
             if(petition.img != null) Picasso.get().load(petition.img).into(img)
             else img.visibility = ImageView.GONE
+
+            proposalButton.setOnClickListener{
+                val bundle = bundleOf("petitionId" to petition.petitionId)
+                itemView.findNavController().navigate(R.id.action_PetitionsFragment_to_ProposalsFragment, bundle)
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.mimedicokotlin.ui.petitions.add
+package com.example.mimedicokotlin.ui.addpetition
 
 import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
