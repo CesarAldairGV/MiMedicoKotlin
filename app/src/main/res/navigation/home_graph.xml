@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/HomeFragment"
         android:name="com.example.mimedicokotlin.ui.home.HomeFragment"
-        android:label="Home"
+        android:label="Perfil"
         tools:layout="@layout/fragment_home"/>
 
     <fragment
         android:id="@+id/PetitionsFragment"
         android:name="com.example.mimedicokotlin.ui.petitions.PetitionsFragment"
-        android:label="Petitions"
+        android:label="Peticiones"
         tools:layout="@layout/fragment_petitions">
     <action
         android:id="@+id/action_PetitionsFragment_to_AddPetitionFragment"
@@ -27,13 +27,13 @@
     <fragment
         android:id="@+id/AddPetitionFragment"
         android:name="com.example.mimedicokotlin.ui.addpetition.AddPetitionFragment"
-        android:label="Add Petition"
+        android:label="Nueva Peticion"
         tools:layout="@layout/fragment_add_petition" />
 
     <fragment
         android:id="@+id/ProposalsFragment"
         android:name="com.example.mimedicokotlin.ui.proposals.ProposalsFragment"
-        android:label="Proposals"
+        android:label="Propuestas"
         tools:layout="@layout/fragment_proposals" >
         <argument
             android:name="petitionId"
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/ConsultsFragment"
         android:name="com.example.mimedicokotlin.ui.consults.ConsultsFragment"
-        android:label="Consults"
+        android:label="Consultas"
         tools:layout="@layout/fragment_consults" />
 
     <action
