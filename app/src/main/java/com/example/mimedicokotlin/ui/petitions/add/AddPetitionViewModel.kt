@@ -10,6 +10,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddPetitionViewModel : ViewModel() {
@@ -25,6 +26,7 @@ class AddPetitionViewModel : ViewModel() {
     private lateinit var firebaseStorage: FirebaseStorage
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var firebaseAuth: FirebaseAuth
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     fun sendPetition(subject: String, body:String, bitmap: Bitmap) {
         firebaseStorage = FirebaseStorage.getInstance()
@@ -34,7 +36,7 @@ class AddPetitionViewModel : ViewModel() {
         val uid = firebaseAuth.currentUser!!.uid
         val bytes = getImageBytes(bitmap)
         val petitionId = UUID.randomUUID().toString()
-        val date = LocalDateTime.now().toString()
+        val date = LocalDateTime.now().format(formatter)
         var name = ""
 
         firebaseFirestore.collection("users")
@@ -74,7 +76,7 @@ class AddPetitionViewModel : ViewModel() {
 
         val uid = firebaseAuth.currentUser!!.uid
         val petitionId = UUID.randomUUID().toString()
-        val date = LocalDateTime.now().toString()
+        val date = LocalDateTime.now().format(formatter)
         var name = ""
 
         firebaseFirestore.collection("users")

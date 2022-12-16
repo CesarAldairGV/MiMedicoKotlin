@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentPetitionsBinding
 
 
 class PetitionsFragment : Fragment() {
 
+    private val viewModel = PetitionsViewModel()
     private var _binding: FragmentPetitionsBinding? = null
     private val binding get() = _binding!!
 
@@ -21,9 +23,21 @@ class PetitionsFragment : Fragment() {
     ): View? {
         _binding = FragmentPetitionsBinding.inflate(inflater, container, false)
 
+        viewModel.petitions.observe(viewLifecycleOwner){
+            val petitionsAdapter = PetitionsAdapter(it,requireContext())
+            val reciclerView = binding.petitionsList
+            val linearLayoutManager = LinearLayoutManager(requireContext())
+            linearLayoutManager.reverseLayout = true
+            linearLayoutManager.stackFromEnd = true
+            reciclerView.layoutManager = linearLayoutManager
+            reciclerView.adapter = petitionsAdapter
+        }
+
         binding.petitionsAddButton.setOnClickListener {
             findNavController().navigate(R.id.action_PetitionsFragment_to_AddPetitionFragment)
         }
+
+        viewModel.getAllItems()
 
         return binding.root
     }
