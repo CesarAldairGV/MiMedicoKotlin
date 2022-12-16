@@ -13,7 +13,6 @@ import com.example.mimedicokotlin.R
 import com.squareup.picasso.Picasso
 
 class PetitionsAdapter(
-    private val list: ArrayList<Petition>,
     private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -39,6 +38,7 @@ class PetitionsAdapter(
     }
 
     private val layoutInflater = LayoutInflater.from(context)
+    var list: ArrayList<Petition> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = layoutInflater.inflate(R.layout.item_petition,parent,false)

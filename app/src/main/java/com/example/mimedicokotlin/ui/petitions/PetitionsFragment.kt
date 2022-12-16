@@ -17,27 +17,33 @@ class PetitionsFragment : Fragment() {
     private var _binding: FragmentPetitionsBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getAllItems()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPetitionsBinding.inflate(inflater, container, false)
 
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
+        binding.petitionsList.layoutManager = linearLayoutManager
+
+        val petitionsAdapter = PetitionsAdapter(requireContext())
+        binding.petitionsList.adapter = petitionsAdapter
+
         viewModel.petitions.observe(viewLifecycleOwner){
-            val petitionsAdapter = PetitionsAdapter(it,requireContext())
-            val recyclerView = binding.petitionsList
-            val linearLayoutManager = LinearLayoutManager(requireContext())
-            linearLayoutManager.reverseLayout = true
-            linearLayoutManager.stackFromEnd = true
-            recyclerView.layoutManager = linearLayoutManager
-            recyclerView.adapter = petitionsAdapter
+            petitionsAdapter.list = it
+            petitionsAdapter.notifyDataSetChanged()
         }
 
         binding.petitionsAddButton.setOnClickListener {
             findNavController().navigate(R.id.action_PetitionsFragment_to_AddPetitionFragment)
         }
-
-        viewModel.getAllItems()
 
         return binding.root
     }

@@ -14,24 +14,28 @@ class ProposalsFragment : Fragment() {
     private var _binding: FragmentProposalsBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getAllItems(arguments?.getString("petitionId")!!)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentProposalsBinding.inflate(inflater, container, false)
 
-        viewModel.proposals.observe(viewLifecycleOwner){
-            val proposalsAdapter = ProposalsAdapter(it,requireContext())
-            val recyclerView = binding.proposalsList
-            val linearLayoutManager = LinearLayoutManager(requireContext())
-            linearLayoutManager.reverseLayout = true
-            linearLayoutManager.stackFromEnd = true
-            recyclerView.layoutManager = linearLayoutManager
-            recyclerView.adapter = proposalsAdapter
-        }
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
+        binding.proposalsList.layoutManager = linearLayoutManager
+        val proposalsAdapter = ProposalsAdapter(requireContext())
+        binding.proposalsList.adapter = proposalsAdapter
 
-        viewModel.getAllItems(arguments?.getString("petitionId")!!)
+        viewModel.proposals.observe(viewLifecycleOwner){
+            proposalsAdapter.list = it
+            proposalsAdapter.notifyDataSetChanged()
+        }
 
         return binding.root
     }

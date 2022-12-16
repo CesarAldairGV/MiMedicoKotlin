@@ -13,12 +13,11 @@ class PetitionsViewModel {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseFirestore: FirebaseFirestore
 
-    private val list: ArrayList<Petition>  = ArrayList()
-
     fun getAllItems(){
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseFirestore = FirebaseFirestore.getInstance()
         val userId = firebaseAuth.currentUser!!.uid
+        val list: ArrayList<Petition>  = ArrayList()
 
         firebaseFirestore.collection("petitions")
             .whereEqualTo("userId",userId)

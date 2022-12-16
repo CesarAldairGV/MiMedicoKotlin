@@ -8,11 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mimedicokotlin.R
-import com.example.mimedicokotlin.ui.petitions.PetitionsAdapter
 import com.squareup.picasso.Picasso
 
 class ProposalsAdapter(
-    private val list: ArrayList<ProposalItem>,
     private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -31,6 +29,7 @@ class ProposalsAdapter(
     }
 
     private val layoutInflater = LayoutInflater.from(context)
+    var list: ArrayList<ProposalItem> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = layoutInflater.inflate(R.layout.item_proposal,parent,false)
