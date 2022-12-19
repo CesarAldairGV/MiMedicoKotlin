@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.proposal.ProposalFragment">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/prop_photo"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/prop_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Nombre:"
+        app:layout_constraintStart_toEndOf="@+id/prop_photo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/prop_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="Nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prop_name_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/prop_years_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Años de Experiencia:"
+        app:layout_constraintStart_toEndOf="@+id/prop_photo"
+        app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
+
+    <TextView
+        android:id="@+id/prop_years"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:text="Años"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prop_years_text"
+        app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
+
+    <TextView
+        android:id="@+id/prop_bussiness_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Bussiness:"
+        app:layout_constraintStart_toEndOf="@+id/prop_photo"
+        app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
+
+    <TextView
+        android:id="@+id/prop_bussiness"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:text="Bussiness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prop_bussiness_text"
+        app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
+
+    <TextView
+        android:id="@+id/prop_likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:drawableStart="@android:drawable/btn_star_big_on"
+        android:text="Likes"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prop_photo" />
+
+    <TextView
+        android:id="@+id/prop_school_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="School:"
+        app:layout_constraintStart_toEndOf="@+id/prop_photo"
+        app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
+
+    <TextView
+        android:id="@+id/prop_school"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:text="School"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prop_school_text"
+        app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
+
+    <TextView
+        android:id="@+id/prop_message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Mensaje:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prop_likes" />
+
+    <TextView
+        android:id="@+id/prop_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Mensaje"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prop_message_text" />
+
+    <Button
+        android:id="@+id/prop_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Aceptar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prop_message" />
+
+    <Button
+        android:id="@+id/prop_refuse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Declinar"
+        app:layout_constraintStart_toEndOf="@+id/prop_accept"
+        app:layout_constraintTop_toBottomOf="@+id/prop_message" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

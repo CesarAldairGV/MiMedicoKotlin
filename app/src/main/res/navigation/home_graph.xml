@@ -38,6 +38,19 @@
         <argument
             android:name="petitionId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_ProposalsFragment_to_ProposalFragment"
+            app:destination="@id/ProposalFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProposalFragment"
+        android:name="com.example.mimedicokotlin.ui.proposal.ProposalFragment"
+        android:label="Propuesta"
+        tools:layout="@layout/fragment_proposal">
+        <argument
+            android:name="proposalId"
+            app:argType="string" />
     </fragment>
 
     <fragment
