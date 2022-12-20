@@ -59,6 +59,12 @@
         android:label="Consultas"
         tools:layout="@layout/fragment_consults" />
 
+    <fragment
+        android:id="@+id/ChatFragment"
+        android:name="com.example.mimedicokotlin.ui.chat.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
+
     <action
         android:id="@+id/action_to_HomeFragment"
         app:destination="@id/HomeFragment" />
