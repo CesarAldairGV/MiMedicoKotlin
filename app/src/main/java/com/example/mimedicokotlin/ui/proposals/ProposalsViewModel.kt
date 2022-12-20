@@ -27,6 +27,7 @@ class ProposalsViewModel : ViewModel() {
                     val obj = iterator.next()
                     val proposalItem = ProposalItem(
                         obj.id,
+                        obj["petitionId",String::class.java]!!,
                         obj["name",String::class.java]!!,
                         obj["date",String::class.java]!!,
                         obj["photoUrl",String::class.java]!!,

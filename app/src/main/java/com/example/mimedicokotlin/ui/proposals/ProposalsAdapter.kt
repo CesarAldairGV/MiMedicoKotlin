@@ -30,7 +30,7 @@ class ProposalsAdapter(
             Picasso.get().load(proposal.photoUrl).into(img)
 
             showProposalButton.setOnClickListener {
-                val bundle = bundleOf("proposalId" to proposal.proposalId)
+                val bundle = bundleOf("proposalId" to proposal.proposalId,"petitionId" to proposal.petitionId)
                 itemView.findNavController().navigate(R.id.action_ProposalsFragment_to_ProposalFragment, bundle)
             }
         }

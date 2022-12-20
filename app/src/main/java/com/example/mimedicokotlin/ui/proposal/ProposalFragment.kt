@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentProposalBinding
 import com.squareup.picasso.Picasso
@@ -37,6 +38,14 @@ class ProposalFragment : Fragment() {
             binding.propLikes.text = it.likes
             Picasso.get().load(it.photoUrl).into(binding.propPhoto)
             binding.root.visibility = View.VISIBLE
+        }
+
+        viewModel.acceptState.observe(viewLifecycleOwner){
+            findNavController().navigate(R.id.action_ProposalFragment_to_ChatFragment)
+        }
+
+        binding.propAccept.setOnClickListener {
+            viewModel.accept(arguments?.getString("petitionId")!!,arguments?.getString("proposalId")!!)
         }
 
         return binding.root

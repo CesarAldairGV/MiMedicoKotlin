@@ -51,13 +51,24 @@
         <argument
             android:name="proposalId"
             app:argType="string" />
+        <argument
+            android:name="petitionId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ProposalFragment_to_ChatFragment"
+            app:popUpTo="@id/PetitionsFragment"
+            app:destination="@id/ChatFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/ConsultsFragment"
         android:name="com.example.mimedicokotlin.ui.consults.ConsultsFragment"
         android:label="Consultas"
-        tools:layout="@layout/fragment_consults" />
+        tools:layout="@layout/fragment_consults" >
+        <action
+            android:id="@+id/action_ConsultsFragment_to_ChatFragment"
+            app:destination="@id/ChatFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/ChatFragment"
