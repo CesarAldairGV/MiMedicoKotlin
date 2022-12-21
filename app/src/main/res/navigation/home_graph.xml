@@ -74,7 +74,11 @@
         android:id="@+id/ChatFragment"
         android:name="com.example.mimedicokotlin.ui.chat.ChatFragment"
         android:label="Chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="consultId"
+            app:argType="string" />
+    </fragment>
 
     <action
         android:id="@+id/action_to_HomeFragment"

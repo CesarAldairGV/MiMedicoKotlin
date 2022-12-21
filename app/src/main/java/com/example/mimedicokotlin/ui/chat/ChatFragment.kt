@@ -27,7 +27,7 @@ class ChatFragment : Fragment() {
         val firebaseFirestore = FirebaseFirestore.getInstance()
 
         val query = firebaseFirestore.collection("chats")
-            .document("Y8AO87QUBX6Yy1Jj3pdB")
+            .document(arguments?.getString("consultId")!!)
             .collection("messages")
 
         val options = FirestoreRecyclerOptions.Builder<Message>()
