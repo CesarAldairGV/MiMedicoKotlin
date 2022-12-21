@@ -32,7 +32,7 @@ class ConsultsFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        val query = firestore.collection("chats")
+        val query = firestore.collection("consults")
             .whereEqualTo("userId", auth.currentUser?.uid )
 
         val options = FirestoreRecyclerOptions.Builder<Consult>()

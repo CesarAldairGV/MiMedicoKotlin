@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mimedicokotlin.services.ProposalService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -24,6 +25,8 @@ class ProposalViewModel : ViewModel(){
 
     private lateinit var firebaseFirestore: FirebaseFirestore
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    private val proposalService = ProposalService()
 
     fun getProposalInfo(proposalId: String){
         firebaseFirestore = FirebaseFirestore.getInstance()
@@ -60,31 +63,8 @@ class ProposalViewModel : ViewModel(){
     }
 
     fun accept(petitionId: String, proposalId: String){
-        firebaseFirestore = FirebaseFirestore.getInstance()
         viewModelScope.launch {
-            val petition = firebaseFirestore.collection("petitions")
-                .document(petitionId)
-                .get()
-                .await()
-            val proposal = firebaseFirestore.collection("proposals")
-                .document(proposalId)
-                .get()
-                .await()
-            firebaseFirestore.collection("petitions")
-                .document(petitionId)
-                .update("finished",true)
-                .await()
-            firebaseFirestore.collection("chats")
-                .document()
-                .set(hashMapOf(
-                    "petitionId" to petitionId,
-                    "proposalId" to proposalId,
-                    "medicId" to proposal["medicId"],
-                    "userId" to petition["userId"],
-                    "subject" to petition["subject"],
-                    "medicName" to proposal["name"],
-                    "date" to LocalDateTime.now().format(formatter)
-                ))
+            proposalService.acceptProposal(proposalId)
             _acceptState.value = true
         }
     }

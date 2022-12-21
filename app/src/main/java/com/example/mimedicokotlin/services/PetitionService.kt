@@ -2,6 +2,7 @@ package com.example.mimedicokotlin.services
 
 import android.graphics.Bitmap
 import android.util.Log
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
@@ -96,4 +97,18 @@ class PetitionService {
         FirebaseFirestore.getInstance().collection("petitions")
             .whereEqualTo("userId",userId)
 
+    suspend fun getPetitionById(petitionId: String): DocumentSnapshot {
+        firestore = FirebaseFirestore.getInstance()
+        return firestore.collection("petitions")
+            .document(petitionId)
+            .get()
+            .await()
+    }
+
+    suspend fun finalizePetition(petitionId: String){
+        FirebaseFirestore.getInstance().collection("petitions")
+            .document(petitionId)
+            .update("finished",true)
+            .await()
+    }
 }
