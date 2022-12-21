@@ -4,20 +4,16 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class AuthService {
 
     private val TAG = "AuthService"
 
-    private lateinit var auth: FirebaseAuth
-    private lateinit var firestore: FirebaseFirestore
-
     private val userService = UserService()
 
     suspend fun login(email: String, password: String): Int {
-        auth = FirebaseAuth.getInstance()
+        val auth = FirebaseAuth.getInstance()
         // Login, if it is not successfully return 2
         try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
@@ -34,22 +30,17 @@ class AuthService {
         }
     }
 
-    suspend fun signup(firstname: String, lastname: String, email: String, curp: String, password: String): Boolean {
-        auth = FirebaseAuth.getInstance()
-        firestore = FirebaseFirestore.getInstance()
+    suspend fun signup(firstname: String,
+                       lastname: String,
+                       email: String,
+                       curp: String,
+                       password: String): Boolean {
         try {
-            val signupResult = auth.createUserWithEmailAndPassword(email, password).await()
+            val signupResult = FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(email, password).await()
             val userId = signupResult.user!!.uid
             signupResult.user!!.sendEmailVerification().await()
-            firestore.collection("users")
-                .document(userId)
-                .set(hashMapOf(
-                        "firstname" to firstname,
-                        "lastname" to lastname,
-                        "email" to email,
-                        "curp" to curp
-                    ))
-                .await()
+            userService.createUser(userId, firstname, lastname, email, curp)
             return true
         }catch (ex : Exception){
             Log.d(TAG,ex.message!!)
@@ -58,18 +49,15 @@ class AuthService {
     }
 
     fun getCurrentUser(): FirebaseUser? {
-        auth = FirebaseAuth.getInstance()
-        return auth.currentUser
+        return FirebaseAuth.getInstance().currentUser
     }
 
     suspend fun getCurrentUserInfo(): DocumentSnapshot{
-        auth = FirebaseAuth.getInstance()
-        return userService.getUser(auth.currentUser!!.uid)
+        return userService.getUser(FirebaseAuth.getInstance().currentUser!!.uid)
     }
 
     fun logout(){
-        auth = FirebaseAuth.getInstance()
-        auth.signOut()
+        FirebaseAuth.getInstance().signOut()
     }
 
 }

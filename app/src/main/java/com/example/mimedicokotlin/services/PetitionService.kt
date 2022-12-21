@@ -16,17 +16,11 @@ class PetitionService {
 
     private val TAG = "PetitionService"
 
-    private lateinit var firestore: FirebaseFirestore
-    private lateinit var storage: FirebaseStorage
-
     private val authService = AuthService()
 
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
     suspend fun addPetition(subject: String, body:String, bitmap: Bitmap): Boolean {
-        storage = FirebaseStorage.getInstance()
-        firestore = FirebaseFirestore.getInstance()
-
         try{
             val user = authService.getCurrentUserInfo()
             val uid = user.id
@@ -34,14 +28,14 @@ class PetitionService {
             val bytes = getImageBytes(bitmap)
             val date = LocalDateTime.now().format(formatter)
 
-            val uploadTask = storage.getReference("petitions")
+            val uploadTask = FirebaseStorage.getInstance().getReference("petitions")
                 .child(UUID.randomUUID().toString())
                 .putBytes(bytes)
                 .await()
 
             val url = uploadTask.storage.downloadUrl.await()
 
-            firestore.collection("petitions")
+            FirebaseFirestore.getInstance().collection("petitions")
                 .add(hashMapOf(
                     "userId" to uid,
                     "name" to name,
@@ -59,16 +53,13 @@ class PetitionService {
     }
 
     suspend fun addPetition(subject: String, body:String): Boolean {
-        storage = FirebaseStorage.getInstance()
-        firestore = FirebaseFirestore.getInstance()
-
         try{
             val user = authService.getCurrentUserInfo()
             val uid = user.id
             val name = "${user!!["firstname"]}  ${user!!["lastname"]}"
             val date = LocalDateTime.now().format(formatter)
 
-            firestore.collection("petitions")
+            FirebaseFirestore.getInstance().collection("petitions")
                 .add(hashMapOf(
                     "userId" to uid,
                     "name" to name,
@@ -98,8 +89,7 @@ class PetitionService {
             .whereEqualTo("userId",userId)
 
     suspend fun getPetitionById(petitionId: String): DocumentSnapshot {
-        firestore = FirebaseFirestore.getInstance()
-        return firestore.collection("petitions")
+        return FirebaseFirestore.getInstance().collection("petitions")
             .document(petitionId)
             .get()
             .await()

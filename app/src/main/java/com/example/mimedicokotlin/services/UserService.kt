@@ -5,13 +5,26 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class UserService {
-    private lateinit var firestore: FirebaseFirestore
-
     suspend fun getUser(userId: String): DocumentSnapshot {
-        firestore = FirebaseFirestore.getInstance()
-        return firestore.collection("users")
+        return FirebaseFirestore.getInstance().collection("users")
             .document(userId)
             .get()
+            .await()
+    }
+
+    suspend fun createUser(userId: String,
+                           firstname: String,
+                           lastname: String,
+                           email: String,
+                           curp: String){
+        FirebaseFirestore.getInstance().collection("users")
+            .document(userId)
+            .set(hashMapOf(
+                "firstname" to firstname,
+                "lastname" to lastname,
+                "email" to email,
+                "curp" to curp
+            ))
             .await()
     }
 }

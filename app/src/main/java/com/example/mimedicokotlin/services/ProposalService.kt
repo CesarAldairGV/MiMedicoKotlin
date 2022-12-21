@@ -8,9 +8,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class ProposalService {
-
-    private lateinit var firestore: FirebaseFirestore
-
     private val petitionService = PetitionService()
     private val consultService = ConsultService()
 
@@ -29,8 +26,6 @@ class ProposalService {
     }
 
     suspend fun acceptProposal(proposalId: String){
-        firestore = FirebaseFirestore.getInstance()
-
         val proposal = getProposalById(proposalId)
         val petitionId = proposal["petitionId",String::class.java]!!
         val petition = petitionService.getPetitionById(petitionId)
