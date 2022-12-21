@@ -4,9 +4,14 @@ import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mimedicokotlin.services.PetitionService
+import com.example.mimedicokotlin.services.UserService
+import com.example.mimedicokotlin.ui.petitions.Petition
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -22,83 +27,18 @@ class AddPetitionViewModel : ViewModel() {
     private val _resultState: MutableLiveData<Boolean> = MutableLiveData()
     val resultState: LiveData<Boolean> get() = _resultState
 
-    private lateinit var firebaseStorage: FirebaseStorage
-    private lateinit var firebaseFirestore: FirebaseFirestore
-    private lateinit var firebaseAuth: FirebaseAuth
-    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private val petitionService = PetitionService()
 
     fun sendPetition(subject: String, body:String, bitmap: Bitmap) {
-        firebaseStorage = FirebaseStorage.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
-        firebaseAuth = FirebaseAuth.getInstance()
-
-        val uid = firebaseAuth.currentUser!!.uid
-        val bytes = getImageBytes(bitmap)
-        val petitionId = UUID.randomUUID().toString()
-        val date = LocalDateTime.now().format(formatter)
-        var name = ""
-
-        firebaseFirestore.collection("users")
-            .document(uid)
-            .get()
-            .onSuccessTask {
-                name = "${it.data!!["firstname"]}  ${it.data!!["lastname"]}"
-                firebaseStorage.getReference("petitions")
-                    .child(petitionId)
-                    .putBytes(bytes)
-            }.onSuccessTask {
-                it.storage.downloadUrl
-            }.onSuccessTask {
-                firebaseFirestore.collection("petitions")
-                    .document(petitionId)
-                    .set(
-                        hashMapOf(
-                            "userId" to uid,
-                            "name" to name,
-                            "date" to date,
-                            "subject" to subject,
-                            "body" to body,
-                            "urlPhoto" to it.toString()
-                        )
-                    )
-            }.addOnSuccessListener {
-                _resultState.value = true
-            }.addOnSuccessListener {
-                _resultState.value = false
-            }
+        viewModelScope.launch {
+            _resultState.value = petitionService.addPetition(subject, body, bitmap)
+        }
     }
 
     fun sendPetition(subject: String, body: String) {
-        firebaseStorage = FirebaseStorage.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
-        firebaseAuth = FirebaseAuth.getInstance()
-
-        val uid = firebaseAuth.currentUser!!.uid
-        val petitionId = UUID.randomUUID().toString()
-        val date = LocalDateTime.now().format(formatter)
-        var name = ""
-
-        firebaseFirestore.collection("users")
-            .document(uid)
-            .get()
-            .onSuccessTask {
-                name = "${it.data!!["firstname"]}  ${it.data!!["lastname"]}"
-                firebaseFirestore.collection("petitions")
-                    .document(petitionId)
-                    .set(
-                        hashMapOf(
-                            "userId" to uid,
-                            "name" to name,
-                            "date" to date,
-                            "subject" to subject,
-                            "body" to body,
-                        )
-                    )
-            }.addOnSuccessListener {
-                _resultState.value = true
-            }.addOnSuccessListener {
-                _resultState.value = false
-            }
+        viewModelScope.launch {
+            _resultState.value = petitionService.addPetition(subject, body)
+        }
     }
 
     fun checkData(subject: String, body : String){
@@ -115,11 +55,5 @@ class AddPetitionViewModel : ViewModel() {
             isDataValid = true
         }
         _formState.value = AddPetitionFormState(subjectError,bodyError,isDataValid)
-    }
-
-    fun getImageBytes(bitmap: Bitmap): ByteArray {
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        return baos.toByteArray()
     }
 }

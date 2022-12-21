@@ -5,14 +5,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class UserService {
-    private val authService = AuthService()
     private lateinit var firestore: FirebaseFirestore
 
-    suspend fun getActualUser(): DocumentSnapshot {
+    suspend fun getUser(userId: String): DocumentSnapshot {
         firestore = FirebaseFirestore.getInstance()
-
-        val userId = authService.getCurrentUser()!!.uid
-
         return firestore.collection("users")
             .document(userId)
             .get()

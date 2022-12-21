@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mimedicokotlin.services.AuthService
 import com.example.mimedicokotlin.services.UserService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -15,11 +16,11 @@ class HomeViewModel: ViewModel() {
     private val _profileData: MutableLiveData<ProfileData> = MutableLiveData()
     val profileData: LiveData<ProfileData> get() = _profileData
 
-    private val userService = UserService()
+    private val authService = AuthService()
 
     fun loadProfileData(){
         viewModelScope.launch {
-            _profileData.value = userService.getActualUser().toProfileData()
+            _profileData.value = authService.getCurrentUserInfo().toProfileData()
         }
     }
 

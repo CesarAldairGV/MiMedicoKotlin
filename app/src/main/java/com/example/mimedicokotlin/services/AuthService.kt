@@ -3,6 +3,7 @@ package com.example.mimedicokotlin.services
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
@@ -12,6 +13,8 @@ class AuthService {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+
+    private val userService = UserService()
 
     suspend fun login(email: String, password: String): Int {
         auth = FirebaseAuth.getInstance()
@@ -57,6 +60,11 @@ class AuthService {
     fun getCurrentUser(): FirebaseUser? {
         auth = FirebaseAuth.getInstance()
         return auth.currentUser
+    }
+
+    suspend fun getCurrentUserInfo(): DocumentSnapshot{
+        auth = FirebaseAuth.getInstance()
+        return userService.getUser(auth.currentUser!!.uid)
     }
 
     fun logout(){
