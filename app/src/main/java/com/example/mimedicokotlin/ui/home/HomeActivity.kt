@@ -11,8 +11,8 @@ import androidx.navigation.ui.*
 import com.example.mimedicokotlin.MainActivity
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.ActivityHomeBinding
+import com.example.mimedicokotlin.services.AuthService
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
 
 
 class HomeActivity : AppCompatActivity() {
@@ -21,12 +21,10 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomeBinding
-
-    private lateinit var firebaseAuth: FirebaseAuth
+    private val authService = AuthService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        firebaseAuth = FirebaseAuth.getInstance()
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_logout -> {
-                firebaseAuth.signOut()
+                authService.logout()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()

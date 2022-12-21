@@ -19,10 +19,14 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        binding.homeCardLayout.visibility = View.INVISIBLE
+        binding.homeLoading.visibility = View.VISIBLE
         viewModel.profileData.observe(viewLifecycleOwner) {
             binding.homeNameField.text = it.name
             binding.homeEmailField.text = it.email
             binding.homeCurpField.text = it.curp
+            binding.homeCardLayout.visibility = View.VISIBLE
+            binding.homeLoading.visibility = View.INVISIBLE
         }
 
         viewModel.loadProfileData()
