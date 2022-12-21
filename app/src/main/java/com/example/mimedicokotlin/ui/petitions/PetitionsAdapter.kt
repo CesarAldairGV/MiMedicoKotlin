@@ -1,56 +1,23 @@
 package com.example.mimedicokotlin.ui.petitions
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mimedicokotlin.R
-import com.squareup.picasso.Picasso
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class PetitionsAdapter(
-    private val context: Context
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PetitionsAdapter(options: FirestoreRecyclerOptions<PetitionItem>):
+    FirestoreRecyclerAdapter<PetitionItem, PetitionItemViewHolder>(options){
 
-    class PetitionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val subject: TextView = itemView.findViewById(R.id.item_pet_subj)
-        private val date: TextView = itemView.findViewById(R.id.item_pet_date)
-        private val body: TextView = itemView.findViewById(R.id.item_pet_body)
-        private val img: ImageView = itemView.findViewById(R.id.item_pet_img)
-        private val proposalButton: TextView = itemView.findViewById(R.id.item_pet_act)
-
-        fun bindData(petition: Petition){
-            subject.text = petition.subject
-            date.text = petition.date
-            body.text = petition.body
-            if(petition.img != null) Picasso.get().load(petition.img).into(img)
-            else img.visibility = ImageView.GONE
-
-            proposalButton.setOnClickListener{
-                val bundle = bundleOf("petitionId" to petition.petitionId)
-                itemView.findNavController().navigate(R.id.action_PetitionsFragment_to_ProposalsFragment, bundle)
-            }
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetitionItemViewHolder {
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_petition, parent, false)
+        return PetitionItemViewHolder(view)
     }
 
-    private val layoutInflater = LayoutInflater.from(context)
-    var list: ArrayList<Petition> = ArrayList()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = layoutInflater.inflate(R.layout.item_petition,parent,false)
-        return PetitionViewHolder(view)
+    override fun onBindViewHolder(holder: PetitionItemViewHolder, position: Int, model: PetitionItem) {
+        holder.bindData(model)
     }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(holder is PetitionViewHolder){
-            holder.bindData(list[position])
-        }
-    }
-
-    override fun getItemCount(): Int = list.size
 
 }

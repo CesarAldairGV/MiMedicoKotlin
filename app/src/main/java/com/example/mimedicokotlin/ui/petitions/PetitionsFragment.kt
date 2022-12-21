@@ -9,17 +9,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentPetitionsBinding
-
+import com.example.mimedicokotlin.services.PetitionService
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.MetadataChanges
 
 class PetitionsFragment : Fragment() {
 
-    private val viewModel = PetitionsViewModel()
     private var _binding: FragmentPetitionsBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getAllItems()
+    private lateinit var adapter: FirestoreRecyclerAdapter<PetitionItem, PetitionItemViewHolder>
+
+    private val petitionsService = PetitionService()
+
+
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
     }
 
     override fun onCreateView(
@@ -33,13 +41,15 @@ class PetitionsFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         binding.petitionsList.layoutManager = linearLayoutManager
 
-        val petitionsAdapter = PetitionsAdapter(requireContext())
-        binding.petitionsList.adapter = petitionsAdapter
+        val options = FirestoreRecyclerOptions.Builder<PetitionItem>()
+            .setQuery(petitionsService.getPetitionsByCurrentUserQuery(),MetadataChanges.INCLUDE) {
+                it.toPetitionItem()
+            }
+            .build()
 
-        viewModel.petitions.observe(viewLifecycleOwner){
-            petitionsAdapter.list = it
-            petitionsAdapter.notifyDataSetChanged()
-        }
+        adapter = PetitionsAdapter(options)
+
+        binding.petitionsList.adapter = adapter
 
         binding.petitionsAddButton.setOnClickListener {
             findNavController().navigate(R.id.action_PetitionsFragment_to_AddPetitionFragment)
@@ -47,4 +57,15 @@ class PetitionsFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun DocumentSnapshot.toPetitionItem(): PetitionItem{
+        return PetitionItem(
+            petitionId = this.id,
+            subject = this["subject",String::class.java]!!,
+            date = this["date",String::class.java]!!,
+            body = this["body",String::class.java]!!,
+            urlPhoto = this["urlPhoto",String::class.java]
+        )
+    }
+
 }

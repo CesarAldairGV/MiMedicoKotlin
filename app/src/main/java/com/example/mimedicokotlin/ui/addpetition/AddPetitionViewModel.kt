@@ -6,16 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mimedicokotlin.services.PetitionService
-import com.example.mimedicokotlin.services.UserService
-import com.example.mimedicokotlin.ui.petitions.Petition
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
-import java.io.ByteArrayOutputStream
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 class AddPetitionViewModel : ViewModel() {
 

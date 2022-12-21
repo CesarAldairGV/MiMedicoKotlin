@@ -3,6 +3,7 @@ package com.example.mimedicokotlin.services
 import android.graphics.Bitmap
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
@@ -87,4 +88,12 @@ class PetitionService {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         return baos.toByteArray()
     }
+
+    fun getPetitionsByCurrentUserQuery(): Query =
+        getPetitionsByUserIdQuery(authService.getCurrentUser()!!.uid)
+
+    fun getPetitionsByUserIdQuery(userId: String): Query =
+        FirebaseFirestore.getInstance().collection("petitions")
+            .whereEqualTo("userId",userId)
+
 }

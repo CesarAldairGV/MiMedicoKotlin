@@ -16,9 +16,9 @@
         android:name="com.example.mimedicokotlin.ui.petitions.PetitionsFragment"
         android:label="Peticiones"
         tools:layout="@layout/fragment_petitions">
-    <action
-        android:id="@+id/action_PetitionsFragment_to_AddPetitionFragment"
-        app:destination="@id/AddPetitionFragment" />
+        <action
+            android:id="@+id/action_PetitionsFragment_to_AddPetitionFragment"
+            app:destination="@id/AddPetitionFragment" />
         <action
             android:id="@+id/action_PetitionsFragment_to_ProposalsFragment"
             app:destination="@id/ProposalsFragment" />
