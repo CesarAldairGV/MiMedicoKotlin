@@ -1,9 +1,14 @@
 package com.example.mimedicokotlin.services
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
 
 class ConsultService {
+
+    fun getConsultByUserIdQuery(userId: String): Query =
+        FirebaseFirestore.getInstance().collection("consults")
+            .whereEqualTo("userId",userId)
 
     suspend fun createConsult(
         proposalId: String,

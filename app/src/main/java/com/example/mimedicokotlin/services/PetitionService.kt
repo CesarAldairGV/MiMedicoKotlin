@@ -42,7 +42,8 @@ class PetitionService {
                     "date" to date,
                     "subject" to subject,
                     "body" to body,
-                    "urlPhoto" to url
+                    "urlPhoto" to url,
+                    "finished" to false
                 ))
                 .await()
             return true
@@ -66,6 +67,7 @@ class PetitionService {
                     "date" to date,
                     "subject" to subject,
                     "body" to body,
+                    "finished" to false
                 ))
                 .await()
             return true
@@ -87,6 +89,7 @@ class PetitionService {
     fun getPetitionsByUserIdQuery(userId: String): Query =
         FirebaseFirestore.getInstance().collection("petitions")
             .whereEqualTo("userId",userId)
+            .whereEqualTo("finished",false)
 
     suspend fun getPetitionById(petitionId: String): DocumentSnapshot {
         return FirebaseFirestore.getInstance().collection("petitions")

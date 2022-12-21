@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentConsultsBinding
+import com.example.mimedicokotlin.services.AuthService
+import com.example.mimedicokotlin.services.ConsultService
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.SnapshotParser
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.MetadataChanges
 
@@ -20,8 +23,15 @@ class ConsultsFragment : Fragment() {
     private var _binding: FragmentConsultsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var firestore: FirebaseFirestore
-    private lateinit var auth: FirebaseAuth
+    private val authService = AuthService()
+    private val consultService = ConsultService()
+
+    private lateinit var adapter : ConsultsAdapter
+
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,42 +39,32 @@ class ConsultsFragment : Fragment() {
     ): View? {
         _binding = FragmentConsultsBinding.inflate(inflater, container, false)
 
-        firestore = FirebaseFirestore.getInstance()
-        auth = FirebaseAuth.getInstance()
-
-        val query = firestore.collection("consults")
-            .whereEqualTo("userId", auth.currentUser?.uid )
-
-        val options = FirestoreRecyclerOptions.Builder<Consult>()
-            .setQuery(query,MetadataChanges.INCLUDE, SnapshotParser {
-                val consult = Consult()
-                consult.consultId = it.id
-                consult.date = it["date",String::class.java]
-                consult.subject = it["subject",String::class.java]
-                consult.medicName = it["medicName",String::class.java]
-                consult
-            })
-            .build()
-
-        val adapter = object: FirestoreRecyclerAdapter<Consult, ConsultViewHolder>(options){
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConsultViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_consult, parent, false)
-                return ConsultViewHolder(view)
-            }
-            override fun onBindViewHolder(holder: ConsultViewHolder, position: Int, model: Consult) {
-                holder.bindData(model)
-            }
-        }
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
 
         binding.consultsList.layoutManager = linearLayoutManager
+
+        val query = consultService.getConsultByUserIdQuery(authService.getCurrentUser()?.uid!!)
+
+        val options = FirestoreRecyclerOptions.Builder<ConsultItem>()
+            .setQuery(query,MetadataChanges.INCLUDE){
+                it.toConsultItem()
+            }
+            .build()
+
+        adapter = ConsultsAdapter(options)
+
         binding.consultsList.adapter = adapter
 
-        adapter.startListening()
         return binding.root
     }
+
+    fun DocumentSnapshot.toConsultItem(): ConsultItem = ConsultItem(
+        consultId = this.id,
+        medicName = this["medicName",String::class.java]!!,
+        subject = this["subject",String::class.java]!!,
+        date = this["date",String::class.java]!!
+    )
 
 }

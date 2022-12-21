@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mimedicokotlin.R
 
-class ConsultViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+class ConsultItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     private val subject = itemView.findViewById<TextView>(R.id.item_cons_subj)
     private val date = itemView.findViewById<TextView>(R.id.item_cons_date)
@@ -16,13 +16,13 @@ class ConsultViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     private val chatButton = itemView.findViewById<Button>(R.id.item_cons_chat)
 
 
-    fun bindData(consult: Consult){
-        subject.text = consult.subject
-        date.text = consult.date
-        medicName.text = consult.medicName
+    fun bindData(consultItem: ConsultItem){
+        subject.text = consultItem.subject
+        date.text = consultItem.date
+        medicName.text = consultItem.medicName
 
         chatButton.setOnClickListener {
-            val bundle = bundleOf("consultId" to consult.consultId)
+            val bundle = bundleOf("consultId" to consultItem.consultId)
             itemView.findNavController().navigate(R.id.action_ConsultsFragment_to_ChatFragment,bundle)
         }
     }
