@@ -21,6 +21,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+        if(firebaseAuth.currentUser != null){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -30,11 +37,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        firebaseAuth = FirebaseAuth.getInstance()
-        if(firebaseAuth.currentUser != null){
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

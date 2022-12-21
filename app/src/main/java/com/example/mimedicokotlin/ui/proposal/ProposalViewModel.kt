@@ -35,7 +35,7 @@ class ProposalViewModel : ViewModel(){
                 .await()
 
             val proposal = ProposalInfo(
-                doc["name",String::class.java]!!,
+                doc["medicName",String::class.java]!!,
                 doc["yearsExp",String::class.java]!!,
                 doc["business",String::class.java]!!,
                 doc["school",String::class.java]!!,
