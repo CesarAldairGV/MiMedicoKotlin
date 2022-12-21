@@ -4,8 +4,11 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mimedicokotlin.services.AuthService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel(){
 
@@ -17,8 +20,7 @@ class LoginViewModel : ViewModel(){
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult : LiveData<LoginResult> get() = _loginResult
 
-    private lateinit var firebaseAuth : FirebaseAuth
-    private lateinit var firebaseFirestore: FirebaseFirestore
+    private val authService = AuthService()
 
     private fun checkEmail(email: String): Boolean{
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -39,16 +41,10 @@ class LoginViewModel : ViewModel(){
     }
 
     fun login(email: String, password: String){
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-            if(!it.user!!.isEmailVerified){
-                _loginResult.value = LoginResult(loginError = 1)
-            }else{
-                _loginResult.value =LoginResult(loginSuccess = true)
-            }
-        }.addOnFailureListener {
-            _loginResult.value =LoginResult(loginError = 2)
+        viewModelScope.launch {
+            val res = authService.login(email,password)
+            if(res == 0) _loginResult.value = LoginResult(loginSuccess = true)
+            else _loginResult.value = LoginResult(loginError = res)
         }
     }
 }

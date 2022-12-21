@@ -4,8 +4,11 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mimedicokotlin.services.AuthService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 
 class SignupViewModel: ViewModel() {
 
@@ -15,29 +18,11 @@ class SignupViewModel: ViewModel() {
     private val _signupResult = MutableLiveData<Boolean>()
     val signupResult : LiveData<Boolean> = _signupResult
 
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var firebaseStore: FirebaseFirestore
-
+    private val authService = AuthService()
 
     fun singup(firstname: String, lastname: String, email: String, curp: String, password: String){
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseStore = FirebaseFirestore.getInstance()
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-            val userId = it.user!!.uid
-            it.user!!.sendEmailVerification().addOnSuccessListener {
-                firebaseStore.collection("users")
-                    .document(userId)
-                    .set(hashMapOf(
-                        "firstname" to firstname,
-                        "lastname" to lastname,
-                        "email" to email,
-                        "curp" to curp
-                    )).addOnSuccessListener {
-                        _signupResult.value = true
-                    }
-            }
-        }.addOnFailureListener {
-            _signupResult.value = false
+        viewModelScope.launch {
+            _signupResult.value = authService.signup(firstname,lastname, email, curp, password)
         }
     }
 
