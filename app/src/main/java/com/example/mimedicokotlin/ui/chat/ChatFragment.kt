@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentChatBinding
 import com.example.mimedicokotlin.services.ConsultService
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.MetadataChanges
 
 
@@ -28,6 +25,13 @@ class ChatFragment : Fragment() {
     private lateinit var adapter: ChatAdapter
 
     private val viewModel = ChatViewModel(consultService)
+
+    private var getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
+        if(it == null) return@registerForActivityResult
+        val fragmentManager = this@ChatFragment.parentFragmentManager
+        val newFragment = SendImageDialogFragment(consultId,it!!)
+        newFragment.show(fragmentManager, "dialog")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +64,10 @@ class ChatFragment : Fragment() {
 
         binding.chatMsgSend.setOnClickListener {
             viewModel.sendMessage(consultId, binding.chatMsgField.text.toString())
+        }
+
+        binding.chatMsgImg.setOnClickListener {
+            getContent.launch("image/*")
         }
 
         binding.chatMsgList.adapter = adapter

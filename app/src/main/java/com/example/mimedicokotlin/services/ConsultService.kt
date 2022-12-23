@@ -1,12 +1,16 @@
 package com.example.mimedicokotlin.services
 
+import android.graphics.Bitmap
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
+import java.io.ByteArrayOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class ConsultService {
 
@@ -61,5 +65,27 @@ class ConsultService {
                 "date" to LocalDateTime.now().format(formatter),
                 "timestamp" to Timestamp.now().seconds
             ))
+    }
+
+    suspend fun sendImage(consultId: String, bitmap: Bitmap){
+        val bytes = getImageBytes(bitmap)
+        val res = FirebaseStorage.getInstance()
+            .getReference("chatimg")
+            .child(UUID.randomUUID().toString())
+            .putBytes(bytes)
+            .await()
+        val url = res.storage.downloadUrl.await()
+        (getChatByConsultIdQuery(consultId) as CollectionReference)
+            .add(hashMapOf(
+                "imgUrl" to url,
+                "date" to LocalDateTime.now().format(formatter),
+                "timestamp" to Timestamp.now().seconds
+            ))
+    }
+
+    private fun getImageBytes(bitmap: Bitmap): ByteArray {
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        return baos.toByteArray()
     }
 }
