@@ -47,9 +47,7 @@ class SignupFragment : Fragment() {
 
         viewModel.signupResult.observe(viewLifecycleOwner) {
             if (it) {
-                val nav = findNavController()
-                nav.popBackStack()
-                nav.navigate(R.id.SignupSuccessFragment)
+                findNavController().navigate(R.id.action_SignupFragment_to_SignupSuccessFragment)
             }else {
                 Toast.makeText(activity, getString(R.string.signup_err1), Toast.LENGTH_LONG)
                     .show()

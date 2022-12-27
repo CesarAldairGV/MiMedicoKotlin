@@ -25,6 +25,7 @@
         tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_SignupFragment_to_SignupSuccessFragment"
+            app:popUpTo="@id/MainFragment"
             app:destination="@id/SignupSuccessFragment" />
     </fragment>
 
@@ -40,5 +41,14 @@
         android:name="com.example.mimedicokotlin.ui.login.LoginFragment"
         android:label="@string/login_label"
         tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_LoginFragment_to_HomeActivity"
+            app:destination="@id/HomeActivity" />
     </fragment>
+
+    <activity
+        android:id="@+id/HomeActivity"
+        android:name="com.example.mimedicokotlin.ui.home.HomeActivity"
+        android:label="@string/title_activity_home">
+    </activity>
 </navigation>
