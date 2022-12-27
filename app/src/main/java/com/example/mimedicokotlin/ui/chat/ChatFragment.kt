@@ -60,7 +60,7 @@ class ChatFragment : Fragment() {
             }
             .build()
 
-        adapter = ChatAdapter(options)
+        adapter = ChatAdapter(binding.chatMsgList,options)
 
         binding.chatMsgSend.setOnClickListener {
             viewModel.sendMessage(consultId, binding.chatMsgField.text.toString())

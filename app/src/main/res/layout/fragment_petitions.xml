@@ -19,7 +19,8 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:accessibilityHeading="false"
-        android:src="@android:drawable/ic_input_add"
-        android:contentDescription="Add new petition button" />
+        android:contentDescription="Add new petition button"
+        android:src="@drawable/ic_add1"
+        app:tint="@color/teal_700"/>
 
 </FrameLayout>
