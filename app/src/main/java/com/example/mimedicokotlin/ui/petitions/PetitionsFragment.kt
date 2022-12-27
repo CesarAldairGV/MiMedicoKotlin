@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentPetitionsBinding
+import com.example.mimedicokotlin.services.AuthService
 import com.example.mimedicokotlin.services.PetitionService
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -22,8 +23,7 @@ class PetitionsFragment : Fragment() {
 
     private lateinit var adapter: FirestoreRecyclerAdapter<PetitionItem, PetitionItemViewHolder>
 
-    private val petitionsService = PetitionService()
-
+    private val authService = AuthService()
 
     override fun onStart() {
         super.onStart()
@@ -39,16 +39,8 @@ class PetitionsFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
+        adapter = PetitionsAdapter.getAdapter(authService.getCurrentUser()!!.uid)
         binding.petitionsList.layoutManager = linearLayoutManager
-
-        val options = FirestoreRecyclerOptions.Builder<PetitionItem>()
-            .setQuery(petitionsService.getPetitionsByCurrentUserQuery(),MetadataChanges.INCLUDE) {
-                it.toPetitionItem()
-            }
-            .build()
-
-        adapter = PetitionsAdapter(options)
-
         binding.petitionsList.adapter = adapter
 
         binding.petitionsAddButton.setOnClickListener {
@@ -56,16 +48,6 @@ class PetitionsFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    private fun DocumentSnapshot.toPetitionItem(): PetitionItem{
-        return PetitionItem(
-            petitionId = this.id,
-            subject = this["subject",String::class.java]!!,
-            date = this["date",String::class.java]!!,
-            body = this["body",String::class.java]!!,
-            urlPhoto = this["urlPhoto",String::class.java]
-        )
     }
 
 }

@@ -24,11 +24,11 @@ class HomeViewModel: ViewModel() {
         }
     }
 
-    fun DocumentSnapshot.toProfileData(): ProfileData{
-        val name = "${this["firstname"]} ${this["lastname"]}"
-        val email = this["email", String::class.java]
-        val curp = this["curp", String::class.java]
+    fun DocumentSnapshot.toProfileData(): ProfileData =
+        ProfileData(
+            name = "${this["firstname"]} ${this["lastname"]}",
+            email = this["email", String::class.java],
+            curp = this["curp", String::class.java]
+        )
 
-        return ProfileData(name,email,curp)
-    }
 }

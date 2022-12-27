@@ -19,7 +19,6 @@ class ProposalsFragment : Fragment() {
 
     private lateinit var adapter: ProposalsAdapter
 
-    private val proposalService = ProposalService()
     private lateinit var petitionId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,27 +40,13 @@ class ProposalsFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
+        adapter = ProposalsAdapter.getAdapter(petitionId)
         binding.proposalsList.layoutManager = linearLayoutManager
-
-        val options = FirestoreRecyclerOptions.Builder<ProposalItem>()
-            .setQuery(proposalService.getProposalsByPetitionIdQuery(petitionId), MetadataChanges.INCLUDE){
-                it.toProposalItem()
-            }
-            .build()
-
-        adapter = ProposalsAdapter(options)
-
         binding.proposalsList.adapter = adapter
 
         return binding.root
     }
 
-    fun DocumentSnapshot.toProposalItem(): ProposalItem = ProposalItem(
-        proposalId = this.id,
-        petitionId = this["petitionId",String::class.java]!!,
-        medicName = this["medicName",String::class.java]!!,
-        date = this["date",String::class.java]!!,
-        photoUrl = this["photoUrl",String::class.java]!!
-    )
+
 
 }

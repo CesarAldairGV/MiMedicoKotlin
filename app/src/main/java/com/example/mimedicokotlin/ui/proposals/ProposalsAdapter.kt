@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import com.example.mimedicokotlin.R
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.MetadataChanges
+import kotlinx.coroutines.tasks.await
 
 
 class ProposalsAdapter(options: FirestoreRecyclerOptions<ProposalItem>)
@@ -22,5 +26,28 @@ class ProposalsAdapter(options: FirestoreRecyclerOptions<ProposalItem>)
         holder.bindData(model)
     }
 
+    companion object{
 
+        fun getAdapter(petitionId: String): ProposalsAdapter {
+            val query = FirebaseFirestore.getInstance()
+                .collection("proposals")
+                .whereEqualTo("petitionId",petitionId)
+
+            val options = FirestoreRecyclerOptions.Builder<ProposalItem>()
+                .setQuery(query, MetadataChanges.INCLUDE){
+                    it.toProposalItem()
+                }
+                .build()
+
+            return ProposalsAdapter(options)
+        }
+
+        private fun DocumentSnapshot.toProposalItem(): ProposalItem = ProposalItem(
+            proposalId = this.id,
+            petitionId = this["petitionId", String::class.java]!!,
+            medicName = this["medicName", String::class.java]!!,
+            date = this["date", String::class.java]!!,
+            photoUrl = this["photoUrl", String::class.java]!!
+        )
+    }
 }

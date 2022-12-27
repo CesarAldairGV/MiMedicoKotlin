@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import com.example.mimedicokotlin.R
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.MetadataChanges
 
 class PetitionsAdapter(options: FirestoreRecyclerOptions<PetitionItem>):
     FirestoreRecyclerAdapter<PetitionItem, PetitionItemViewHolder>(options){
@@ -18,6 +21,34 @@ class PetitionsAdapter(options: FirestoreRecyclerOptions<PetitionItem>):
 
     override fun onBindViewHolder(holder: PetitionItemViewHolder, position: Int, model: PetitionItem) {
         holder.bindData(model)
+    }
+
+    companion object{
+
+        fun getAdapter(userId: String): PetitionsAdapter{
+
+            val query = FirebaseFirestore.getInstance().collection("petitions")
+                .whereEqualTo("userId",userId)
+                .whereEqualTo("finished",false)
+
+            val options = FirestoreRecyclerOptions.Builder<PetitionItem>()
+                .setQuery(query, MetadataChanges.INCLUDE) {
+                    it.toPetitionItem()
+                }
+                .build()
+
+            return PetitionsAdapter(options)
+        }
+
+        private fun DocumentSnapshot.toPetitionItem(): PetitionItem{
+            return PetitionItem(
+                petitionId = this.id,
+                subject = this["subject", String::class.java]!!,
+                date = this["date", String::class.java]!!,
+                body = this["body", String::class.java]!!,
+                urlPhoto = this["urlPhoto", String::class.java]
+            )
+        }
     }
 
 }
