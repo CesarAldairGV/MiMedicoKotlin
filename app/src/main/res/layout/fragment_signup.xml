@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Registro"
+        android:text="@string/signup_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Nombres: "
+        android:text="@string/signup_firstname_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_banner" />
 
@@ -33,7 +33,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:hint="John"
+        android:hint="@string/signup_firstname_hint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Apellidos: "
+        android:text="@string/signup_lastname_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_firstname" />
 
@@ -57,7 +57,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:hint="Romero"
+        android:hint="@string/signup_lastname_hint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Email: "
+        android:text="@string/signup_email_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_lastname" />
 
@@ -81,7 +81,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:hint="john@gmail.com"
+        android:hint="@string/signup_email_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="CURP: "
+        android:text="@string/signup_curp_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_email" />
 
@@ -105,7 +105,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:hint="JARB0101200174982364"
+        android:hint="@string/signup_curp_hint"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Contraseña: "
+        android:text="@string/signup_password_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_curp" />
 
@@ -129,7 +129,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/signup_password_hint"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Registrarse"
+        android:text="@string/signup_send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_password" />

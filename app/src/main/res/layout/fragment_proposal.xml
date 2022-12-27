@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:text="Nombre:"
+        android:text="@string/proposal_name"
         app:layout_constraintStart_toEndOf="@+id/prop_photo"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +35,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:text="Nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/prop_name_text"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Años de Experiencia:"
+        android:text="@string/proposal_years"
         app:layout_constraintStart_toEndOf="@+id/prop_photo"
         app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
 
@@ -57,7 +56,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:text="Años"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/prop_years_text"
         app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
@@ -68,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Bussiness:"
+        android:text="@string/proposal_business"
         app:layout_constraintStart_toEndOf="@+id/prop_photo"
         app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
 
@@ -79,7 +77,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:text="Bussiness"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/prop_bussiness_text"
         app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
@@ -89,11 +86,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:drawableStart="@android:drawable/btn_star_big_on"
-        android:text="Likes"
-        android:textSize="22dp"
+        android:text="@string/proposal_likes"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prop_photo" />
+        app:layout_constraintTop_toBottomOf="@+id/prop_photo"
+        app:drawableStartCompat="@android:drawable/btn_star_big_on" />
 
     <TextView
         android:id="@+id/prop_school_text"
@@ -101,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="School:"
+        android:text="@string/proposal_school"
         app:layout_constraintStart_toEndOf="@+id/prop_photo"
         app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
 
@@ -112,7 +109,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:text="School"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/prop_school_text"
         app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
@@ -123,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="Mensaje:"
+        android:text="@string/proposal_message"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prop_likes" />
 
@@ -133,7 +129,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:text="Mensaje"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prop_message_text" />
 
@@ -143,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Aceptar"
+        android:text="@string/proposal_accept"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prop_message" />
 
@@ -153,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Declinar"
+        android:text="@string/proposal_refuse"
         app:layout_constraintStart_toEndOf="@+id/prop_accept"
         app:layout_constraintTop_toBottomOf="@+id/prop_message" />
 

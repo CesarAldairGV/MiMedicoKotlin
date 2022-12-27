@@ -1,24 +1,99 @@
-<resources>
-    <string name="app_name">MiMedicoKotlin</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_home">HomeActivity</string>
+<resources>
+    <string name="app_name">My Medic For Patients</string>
+    <string name="title_activity_home">Home</string>
+
+    <string name="menu_logout">Log Out</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_petitions">Petitions</string>
+    <string name="menu_consults">Queries</string>
+
+    <string name="main_text">My Medic</string>
+    <string name="main_button1">I don\'t have an account</string>
+    <string name="main_button2">I already have an account</string>
+
+    <string name="login_label">Login</string>
+    <string name="login_text">Login</string>
+    <string name="login_email_text">Email:</string>
+    <string name="login_email_hint">johndoe@gmail.com</string>
+    <string name="login_email_err">Email must be valid</string>
+    <string name="login_password_text">Password:</string>
+    <string name="login_password_hint">CON95KER</string>
+    <string name="login_password_err">Password must be longer than 5 characters</string>
+    <string name="login_send">Login</string>
+    <string name="login_err1">Incorrect Credentials</string>
+    <string name="login_err2">Account Not Verified</string>
+
+    <string name="signup_label">Sign Up</string>
+    <string name="signup_text">Sign Up</string>
+    <string name="signup_firstname_text">First Name:</string>
+    <string name="signup_firstname_hint">John</string>
+    <string name="signup_firstname_err">Name must not be empty</string>
+    <string name="signup_lastname_text">Last Name:</string>
+    <string name="signup_lastname_hint">Doe</string>
+    <string name="signup_lastname_err">Last name must not be empty</string>
+    <string name="signup_email_text">Email:</string>
+    <string name="signup_email_hint">johndoe@gmail.com</string>
+    <string name="signup_email_err">Email must be valid</string>
+    <string name="signup_curp_text">Curp:</string>
+    <string name="signup_curp_hint">JD212121JOLKOSKE1D</string>
+    <string name="signup_curp_err">The curp must be 18 characters long</string>
+    <string name="signup_password_text">Password:</string>
+    <string name="signup_password_hint">CON95KER</string>
+    <string name="signup_password_err">Password must be longer than 5 characters</string>
+    <string name="signup_send">Sign Up</string>
+    <string name="signup_err1">Incorrect Credentials</string>
+
+    <string name="signup_success_label">Signup Success</string>
+    <string name="signup_success_text">You have been sent a confirmation email, Sign Up to get started</string>
+
+    <string name="home_text">My Profile</string>
+    <string name="home_name">Name: </string>
+    <string name="home_email">Email: </string>
+    <string name="home_curp">Curp: </string>
+
+    <string name="petitions_label">Petitions</string>
+
+    <string name="item_petition_subject">Item</string>
+    <string name="item_petition_date">Date</string>
+    <string name="item_petition_body">Body</string>
+    <string name="item_petition_button">View proposals</string>
+
+    <string name="addp_label">New Petition</string>
+    <string name="addp_text">New Petition</string>
+    <string name="addp_subject">Subject</string>
+    <string name="addp_subject_err">Must contain between 5 and 30 characters</string>
+    <string name="addp_body">Abstract</string>
+    <string name="addp_body_err">Must contain between 30 and 280 characters</string>
+    <string name="addp_image">Image(Optional)</string>
+    <string name="addp_image_button">Select Image</string>
+    <string name="addp_sended">Request sent successfully</string>
+    <string name="addp_err1">An error occurred</string>
+
+    <string name="item_proposal_medicname">Medical</string>
+    <string name="item_proposal_date">Date</string>
+    <string name="item_proposal_button">Show</string>
+
+    <string name="proposals_label">Proposals</string>
+
+    <string name="proposal_label">Proposal</string>
+    <string name="proposal_name">Name: </string>
+    <string name="proposal_years">Years of Experience: </string>
+    <string name="proposal_business">Company: </string>
+    <string name="proposal_school">School: </string>
+    <string name="proposal_likes">0</string>
+    <string name="proposal_message">Message: </string>
+    <string name="proposal_accept">Accept</string>
+    <string name="proposal_refuse">Refuse</string>
+
+    <string name="send_img_text">Are you sure you want to send the next image?</string>
+    <string name="send_img_cancel">Cancel</string>
+    <string name="send_img_accept">Accept</string>
+
+    <string name="consults_label">Consults</string>
+    <string name="consult_chat_button">Chat</string>
+
+    <string name="chat_label">Chat</string>
+    <string name="chat_message">Message</string>
+
 </resources>

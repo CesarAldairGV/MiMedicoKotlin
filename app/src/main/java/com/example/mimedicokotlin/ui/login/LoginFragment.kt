@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentLoginBinding
 import com.example.mimedicokotlin.ui.home.HomeActivity
 
@@ -26,19 +27,19 @@ class LoginFragment : Fragment() {
 
         loginViewModel.loginForm.observe(viewLifecycleOwner){
             if(it.emailError != null){
-                binding.loginEmail.error = "Email debe ser valido"
+                binding.loginEmail.error = getString(R.string.login_email_err)
             }
             if(it.passwordError != null){
-                binding.loginPassword.error = "La contraseña debe ser valida"
+                binding.loginPassword.error = getString(R.string.login_password_err)
             }
             binding.loginAction.isEnabled = it.isDataValid
         }
 
         loginViewModel.loginResult.observe(viewLifecycleOwner){
             if(it.loginError == 1){
-                Toast.makeText(activity, "Email no verificado", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, getString(R.string.login_err2), Toast.LENGTH_LONG).show()
             }else if(it.loginError == 2){
-                Toast.makeText(activity, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, getString(R.string.login_err1), Toast.LENGTH_LONG).show()
             }
             if(it.loginSuccess){
                 val intent = Intent(activity, HomeActivity::class.java)

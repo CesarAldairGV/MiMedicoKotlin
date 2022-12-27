@@ -2,13 +2,13 @@
     <item
         android:id="@+id/HomeFragment"
         android:icon="@drawable/ic_user"
-        android:title="Perfil" />
+        android:title="@string/menu_profile" />
     <item
         android:id="@+id/PetitionsFragment"
         android:icon="@drawable/ic_petition"
-        android:title="Mis peticiones" />
+        android:title="@string/menu_petitions" />
     <item
         android:id="@+id/ConsultsFragment"
         android:icon="@drawable/ic_consult"
-        android:title="Consultas" />
+        android:title="@string/menu_consults" />
 </menu>

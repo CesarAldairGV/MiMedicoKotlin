@@ -28,32 +28,30 @@ class SignupFragment : Fragment() {
 
         viewModel.signupForm.observe(viewLifecycleOwner){
             if(it.firstnameError != null){
-                binding.signupFirstname.error = "El nombre no debe estar vacio"
+                binding.signupFirstname.error = getString(R.string.signup_firstname_err)
             }
             if(it.lastnameError != null){
-                binding.signupLastname.error = "Los apellidos no debe estar vacio"
+                binding.signupLastname.error = getString(R.string.signup_lastname_err)
             }
             if(it.emailError != null){
-                binding.signupEmail.error = "El email debe ser valido"
+                binding.signupEmail.error = getString(R.string.signup_email_err)
             }
             if(it.curpError != null){
-                binding.signupCurp.error = "El curp debe tener 18 caracteres"
+                binding.signupCurp.error = getString(R.string.signup_curp_err)
             }
             if(it.passwordError != null){
-                binding.signupPassword.error = "La contraseña debe ser mayor de 5 caracteres"
+                binding.signupPassword.error = getString(R.string.signup_password_err)
             }
             binding.signupAction.isEnabled = it.isDataValid
         }
 
         viewModel.signupResult.observe(viewLifecycleOwner) {
             if (it) {
-                Toast.makeText(activity, "Registro Correcto", Toast.LENGTH_LONG)
-                    .show()
                 val nav = findNavController()
                 nav.popBackStack()
                 nav.navigate(R.id.SignupSuccessFragment)
             }else {
-                Toast.makeText(activity, "Error, no se pudo registrar", Toast.LENGTH_LONG)
+                Toast.makeText(activity, getString(R.string.signup_err1), Toast.LENGTH_LONG)
                     .show()
             }
         }

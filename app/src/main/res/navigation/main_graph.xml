@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/MainFragment"
         android:name="com.example.mimedicokotlin.MainFragment"
-        android:label="Mi Medico"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_MainFragment_to_LoginFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/SignupFragment"
         android:name="com.example.mimedicokotlin.ui.signup.SignupFragment"
-        android:label="Registro"
+        android:label="@string/signup_label"
         tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_SignupFragment_to_SignupSuccessFragment"
@@ -31,14 +31,14 @@
     <fragment
         android:id="@+id/SignupSuccessFragment"
         android:name="com.example.mimedicokotlin.ui.signup.SignupSuccessFragment"
-        android:label="Registro Exitoso"
+        android:label="@string/signup_success_label"
         tools:layout="@layout/fragment_signup_success">
     </fragment>
 
     <fragment
         android:id="@+id/LoginFragment"
         android:name="com.example.mimedicokotlin.ui.login.LoginFragment"
-        android:label="Inciar Sesion"
+        android:label="@string/login_label"
         tools:layout="@layout/fragment_login">
     </fragment>
 </navigation>

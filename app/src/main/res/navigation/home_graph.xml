@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/HomeFragment"
         android:name="com.example.mimedicokotlin.ui.home.HomeFragment"
-        android:label="Perfil"
+        android:label="@string/title_activity_home"
         tools:layout="@layout/fragment_home"/>
 
     <fragment
         android:id="@+id/PetitionsFragment"
         android:name="com.example.mimedicokotlin.ui.petitions.PetitionsFragment"
-        android:label="Peticiones"
+        android:label="@string/petitions_label"
         tools:layout="@layout/fragment_petitions">
         <action
             android:id="@+id/action_PetitionsFragment_to_AddPetitionFragment"
@@ -27,13 +27,13 @@
     <fragment
         android:id="@+id/AddPetitionFragment"
         android:name="com.example.mimedicokotlin.ui.addpetition.AddPetitionFragment"
-        android:label="Nueva Peticion"
+        android:label="@string/addp_label"
         tools:layout="@layout/fragment_add_petition" />
 
     <fragment
         android:id="@+id/ProposalsFragment"
         android:name="com.example.mimedicokotlin.ui.proposals.ProposalsFragment"
-        android:label="Propuestas"
+        android:label="@string/proposals_label"
         tools:layout="@layout/fragment_proposals" >
         <argument
             android:name="petitionId"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/ProposalFragment"
         android:name="com.example.mimedicokotlin.ui.proposal.ProposalFragment"
-        android:label="Propuesta"
+        android:label="@string/proposal_label"
         tools:layout="@layout/fragment_proposal">
         <argument
             android:name="proposalId"
@@ -63,7 +63,7 @@
     <fragment
         android:id="@+id/ConsultsFragment"
         android:name="com.example.mimedicokotlin.ui.consults.ConsultsFragment"
-        android:label="Consultas"
+        android:label="@string/consults_label"
         tools:layout="@layout/fragment_consults" >
         <action
             android:id="@+id/action_ConsultsFragment_to_ChatFragment"
@@ -73,7 +73,7 @@
     <fragment
         android:id="@+id/ChatFragment"
         android:name="com.example.mimedicokotlin.ui.chat.ChatFragment"
-        android:label="Chat"
+        android:label="@string/chat_label"
         tools:layout="@layout/fragment_chat" >
         <argument
             android:name="consultId"

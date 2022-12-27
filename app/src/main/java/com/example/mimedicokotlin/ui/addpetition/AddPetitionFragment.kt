@@ -42,17 +42,17 @@ class AddPetitionFragment : Fragment() {
 
         viewModel.formState.observe(viewLifecycleOwner){
             if(it.subjectError == 1){
-                binding.addpSubject.error = "Debe contener entre 5 y 30 caracteres"
+                binding.addpSubject.error = getString(R.string.addp_subject_err)
             }
             if(it.bodyError == 1){
-                binding.addpBody.error = "Debe contener entre 30 y 280 caracteres"
+                binding.addpBody.error = getString(R.string.addp_body_err)
             }
             binding.addpButtonAction.isEnabled = it.isDataValid
         }
 
         viewModel.resultState.observe(viewLifecycleOwner){
             if(it){
-                Toast.makeText(activity, "Peticion enviada correctamente", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, getString(R.string.addp_sended), Toast.LENGTH_LONG).show()
                 binding.addpSubject.removeTextChangedListener(subjectWatcher)
                 binding.addpBody.removeTextChangedListener(bodyWatcher)
                 binding.addpSubject.text.clear()
@@ -63,7 +63,7 @@ class AddPetitionFragment : Fragment() {
                 binding.addpSubject.addTextChangedListener(subjectWatcher)
                 binding.addpBody.addTextChangedListener(bodyWatcher)
             }else{
-                Toast.makeText(activity, "Ocurrio un error inesperado", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, getString(R.string.addp_err1), Toast.LENGTH_LONG).show()
             }
         }
 

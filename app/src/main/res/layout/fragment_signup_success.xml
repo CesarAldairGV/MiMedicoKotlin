@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:text="Se te ha enviado un email de confirmacion, Inicia Sesion para empezar" />
+            android:text="@string/signup_success_text" />
 
     </androidx.cardview.widget.CardView>
 
