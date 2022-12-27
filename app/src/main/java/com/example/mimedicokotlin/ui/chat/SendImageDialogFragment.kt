@@ -25,7 +25,6 @@ class SendImageDialogFragment(private val consultId: String, private val image: 
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSendImageBinding.inflate(inflater, container, false)
-
         binding.chatSendImgImg.setImageURI(image)
 
         binding.chatSendImgCancel.setOnClickListener {
@@ -45,6 +44,5 @@ class SendImageDialogFragment(private val consultId: String, private val image: 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return dialog
     }
-
 
 }

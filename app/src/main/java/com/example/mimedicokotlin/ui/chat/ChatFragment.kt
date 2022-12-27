@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.databinding.FragmentChatBinding
@@ -19,12 +20,11 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
 
-    private val consultService = ConsultService()
-    private lateinit var consultId: String
+    private val viewModel = ChatViewModel()
 
     private lateinit var adapter: ChatAdapter
 
-    private val viewModel = ChatViewModel(consultService)
+    private lateinit var consultId: String
 
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
         if(it == null) return@registerForActivityResult
@@ -50,17 +50,13 @@ class ChatFragment : Fragment() {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
 
         val linearLayoutManager = LinearLayoutManager(requireContext())
+        adapter = ChatAdapter.getAdapter(consultId, binding.chatMsgList)
         binding.chatMsgList.layoutManager = linearLayoutManager
+        binding.chatMsgList.adapter = adapter
 
-
-        val options = FirestoreRecyclerOptions.Builder<MessageItem>()
-            .setQuery(consultService.getChatByConsultIdAndOrderByTimestampQuery(consultId),
-                MetadataChanges.INCLUDE){
-                it.toMessageItem()
-            }
-            .build()
-
-        adapter = ChatAdapter(binding.chatMsgList,options)
+        viewModel.messageState.observe(viewLifecycleOwner){
+            binding.chatMsgSend.isEnabled = it
+        }
 
         binding.chatMsgSend.setOnClickListener {
             viewModel.sendMessage(consultId, binding.chatMsgField.text.toString())
@@ -70,15 +66,11 @@ class ChatFragment : Fragment() {
             getContent.launch("image/*")
         }
 
-        binding.chatMsgList.adapter = adapter
+        binding.chatMsgField.addTextChangedListener {
+            viewModel.checkMessage(it.toString())
+        }
+
+        binding.chatMsgSend.isEnabled = false
         return binding.root
     }
-
-    fun DocumentSnapshot.toMessageItem(): MessageItem =
-        MessageItem(
-            message = this["message",String::class.java],
-            photoUrl = this["photoUrl",String::class.java],
-            imgUrl = this["imgUrl",String::class.java],
-            date = this["date",String::class.java]!!
-        )
 }
