@@ -27,7 +27,7 @@ class ProposalViewModel @Inject constructor(
 
     fun getProposalInfo(proposalId: String){
         viewModelScope.launch {
-            val doc = proposalService.getProposalById(proposalId)
+            val doc = proposalService.getProposalById(proposalId)!!
 
             val proposal = ProposalInfo(
                 doc["medicName",String::class.java]!!,

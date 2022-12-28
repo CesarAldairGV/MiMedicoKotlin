@@ -22,11 +22,11 @@ class HomeViewModel @Inject constructor(
 
     fun loadProfileData(){
         viewModelScope.launch {
-            _profileData.value = userService.getUser(authService.getCurrentUser()!!.uid).toProfileData()
+            _profileData.value = userService.getUser(authService.getCurrentUser()!!.uid)?.toProfileData()
         }
     }
 
-    fun DocumentSnapshot.toProfileData(): ProfileData =
+    private fun DocumentSnapshot.toProfileData(): ProfileData =
         ProfileData(
             name = "${this["firstname"]} ${this["lastname"]}",
             email = this["email", String::class.java],

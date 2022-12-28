@@ -10,22 +10,21 @@ class AuthService(
     private val userService : UserService
 ){
 
-    private val TAG = "AuthService"
+    private val tag = "AuthService"
 
     suspend fun login(email: String, password: String): Int {
         val auth = FirebaseAuth.getInstance()
-        // Login, if it is not successfully return 2
         try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
-            //If it is not verified, return 1
             if (!result.user!!.isEmailVerified){
+                Log.d(tag, "User not verified")
                 auth.signOut()
                 return 1
             }
-            // Everything is correct, return 0
+            Log.d(tag, "Login Successfully")
             return 0
         } catch (ex: Exception) {
-            Log.d(TAG,ex.message!!)
+            Log.e(tag,ex.message!!)
             return 2
         }
     }
@@ -35,16 +34,17 @@ class AuthService(
                        email: String,
                        curp: String,
                        password: String): Boolean {
-        try {
+        return try {
             val signupResult = FirebaseAuth.getInstance()
                 .createUserWithEmailAndPassword(email, password).await()
             val userId = signupResult.user!!.uid
             signupResult.user!!.sendEmailVerification().await()
             userService.createUser(userId, firstname, lastname, email, curp)
-            return true
+            Log.d(tag,"Signup Successfully")
+            true
         }catch (ex : Exception){
-            Log.d(TAG,ex.message!!)
-            return false
+            Log.d(tag,ex.message!!)
+            false
         }
     }
 
@@ -52,8 +52,10 @@ class AuthService(
         return FirebaseAuth.getInstance().currentUser
     }
 
-    suspend fun getCurrentUserInfo(): DocumentSnapshot{
-        return userService.getUser(FirebaseAuth.getInstance().currentUser!!.uid)
+    suspend fun getCurrentUserInfo(): DocumentSnapshot?{
+        val userId = getCurrentUser()?.uid
+        if(userId != null) return userService.getUser(userId)
+        return null
     }
 
     fun logout(){

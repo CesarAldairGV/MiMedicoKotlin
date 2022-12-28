@@ -15,14 +15,15 @@ class PetitionService(
     private val authService: AuthService
 ) {
 
-    private val TAG = "PetitionService"
+    private val tag = "PetitionService"
 
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
     suspend fun addPetition(subject: String, body:String, bitmap: Bitmap): Boolean {
-        try{
+        return try{
+            Log.d(tag, "Creating a new petition with image...")
             val user = authService.getCurrentUserInfo()
-            val uid = user.id
+            val uid = user?.id
             val name = "${user!!["firstname"]}  ${user!!["lastname"]}"
             val bytes = getImageBytes(bitmap)
             val date = LocalDateTime.now().format(formatter)
@@ -45,17 +46,19 @@ class PetitionService(
                     "finished" to false
                 ))
                 .await()
-            return true
+            Log.d(tag, "Petition with image created successfully")
+            true
         }catch (ex: Exception){
-            Log.d(TAG,ex.message!!)
-            return false
+            Log.d(tag,ex.message!!)
+            false
         }
     }
 
     suspend fun addPetition(subject: String, body:String): Boolean {
-        try{
+        return try{
+            Log.d(tag, "Creating a new petition...")
             val user = authService.getCurrentUserInfo()
-            val uid = user.id
+            val uid = user?.id
             val name = "${user!!["firstname"]}  ${user!!["lastname"]}"
             val date = LocalDateTime.now().format(formatter)
 
@@ -69,10 +72,11 @@ class PetitionService(
                     "finished" to false
                 ))
                 .await()
-            return true
+            Log.d(tag, "Petition created successfully")
+            true
         }catch (ex: Exception){
-            Log.d(TAG,ex.message!!)
-            return false
+            Log.d(tag,ex.message!!)
+            false
         }
     }
 
@@ -82,17 +86,33 @@ class PetitionService(
         return baos.toByteArray()
     }
 
-    suspend fun getPetitionById(petitionId: String): DocumentSnapshot {
-        return FirebaseFirestore.getInstance().collection("petitions")
-            .document(petitionId)
-            .get()
-            .await()
+    suspend fun getPetitionById(petitionId: String): DocumentSnapshot? {
+        return try{
+            Log.d(tag, "Fetching a petition...")
+            val doc = FirebaseFirestore.getInstance().collection("petitions")
+                .document(petitionId)
+                .get()
+                .await()
+            Log.d(tag, "Petition fetched")
+            doc
+        }catch (ex: Exception){
+            Log.d(tag,ex.message!!)
+            null
+        }
     }
 
-    suspend fun finalizePetition(petitionId: String){
-        FirebaseFirestore.getInstance().collection("petitions")
-            .document(petitionId)
-            .update("finished",true)
-            .await()
+    suspend fun finalizePetition(petitionId: String): Boolean{
+        return try{
+            Log.d(tag, "Finishing Petition...")
+            FirebaseFirestore.getInstance().collection("petitions")
+                .document(petitionId)
+                .update("finished",true)
+                .await()
+            Log.d(tag, "Petition Finished")
+            true
+        }catch (ex: Exception){
+            Log.d(tag, ex.message!!)
+            false
+        }
     }
 }

@@ -15,8 +15,6 @@ class AddPetitionViewModel @Inject constructor(
     private val petitionService : PetitionService
 ): ViewModel() {
 
-    private val TAG = "AddPetitionViewModel"
-
     private val _formState: MutableLiveData<AddPetitionFormState> = MutableLiveData()
     val formState: LiveData<AddPetitionFormState> get() = _formState
 

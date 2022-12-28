@@ -1,6 +1,7 @@
 package com.example.mimedicokotlin.services
 
 import android.graphics.Bitmap
+import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -11,6 +12,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ConsultService {
+
+    private val tag = "ConsultService"
 
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
@@ -23,36 +26,53 @@ class ConsultService {
         userName: String,
         subject: String,
         date: String
-    ) {
-        FirebaseFirestore.getInstance().collection("consults")
-            .document()
-            .set(
-                hashMapOf(
-                    "petitionId" to petitionId,
-                    "proposalId" to proposalId,
-                    "medicId" to medicId,
-                    "userId" to userId,
-                    "subject" to subject,
-                    "medicName" to medicName,
-                    "userName" to userName,
-                    "date" to date
+    ): Boolean {
+        return try{
+            Log.d(tag, "Creating a consult...")
+            FirebaseFirestore.getInstance().collection("consults")
+                .document()
+                .set(
+                    hashMapOf(
+                        "petitionId" to petitionId,
+                        "proposalId" to proposalId,
+                        "medicId" to medicId,
+                        "userId" to userId,
+                        "subject" to subject,
+                        "medicName" to medicName,
+                        "userName" to userName,
+                        "date" to date
+                    )
                 )
-            )
-            .await()
+                .await()
+            Log.d(tag, "Consult created successfully")
+            true
+        }catch(ex: Exception){
+            Log.e(tag,ex.message!!)
+            false
+        }
     }
 
-    fun sendMessage(consultId: String, message: String){
-        FirebaseFirestore.getInstance().collection("consults")
-            .document(consultId)
-            .collection("chat")
-            .add(hashMapOf(
-                "message" to message,
-                "date" to LocalDateTime.now().format(formatter),
-                "timestamp" to Timestamp.now().seconds
-            ))
+    suspend fun sendMessage(consultId: String, message: String): Boolean{
+        return try{
+            Log.d(tag, "Sending a message...")
+            FirebaseFirestore.getInstance().collection("consults")
+                .document(consultId)
+                .collection("chat")
+                .add(hashMapOf(
+                    "message" to message,
+                    "date" to LocalDateTime.now().format(formatter),
+                    "timestamp" to Timestamp.now().seconds
+                ))
+                .await()
+            Log.d(tag, "Message Sent successfully...")
+            true
+        }catch (ex : Exception){
+            Log.e(tag, ex.message!!)
+            false
+        }
     }
 
-    suspend fun sendImage(consultId: String, bitmap: Bitmap){
+    suspend fun sendImage(consultId: String, bitmap: Bitmap): Boolean{
         val bytes = getImageBytes(bitmap)
         val res = FirebaseStorage.getInstance()
             .getReference("chatimg")
@@ -60,14 +80,23 @@ class ConsultService {
             .putBytes(bytes)
             .await()
         val url = res.storage.downloadUrl.await()
-        FirebaseFirestore.getInstance().collection("consults")
-            .document(consultId)
-            .collection("chat")
-            .add(hashMapOf(
-                "imgUrl" to url,
-                "date" to LocalDateTime.now().format(formatter),
-                "timestamp" to Timestamp.now().seconds
-            ))
+        return try{
+            Log.d(tag, "Sending a Image...")
+            FirebaseFirestore.getInstance().collection("consults")
+                .document(consultId)
+                .collection("chat")
+                .add(hashMapOf(
+                    "imgUrl" to url,
+                    "date" to LocalDateTime.now().format(formatter),
+                    "timestamp" to Timestamp.now().seconds
+                ))
+                .await()
+            Log.d(tag, "Image Sent Successfully")
+            true
+        }catch (ex: Exception){
+            Log.e(tag, ex.message!!)
+            false
+        }
     }
 
     private fun getImageBytes(bitmap: Bitmap): ByteArray {

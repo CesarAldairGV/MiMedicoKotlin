@@ -15,8 +15,6 @@ class LoginViewModel @Inject constructor(
     private val authService: AuthService
 ) : ViewModel(){
 
-    private val TAG = "LoginViewModel"
-
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginForm : LiveData<LoginFormState> get() = _loginForm
 
