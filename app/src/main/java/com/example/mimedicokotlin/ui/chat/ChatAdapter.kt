@@ -40,6 +40,7 @@ class ChatAdapter(val recyclerView: RecyclerView, options: FirestoreRecyclerOpti
                 .document(consultId)
                 .collection("chat")
                 .orderBy("timestamp")
+                .limitToLast(7)
 
             val options = FirestoreRecyclerOptions.Builder<MessageItem>()
                 .setQuery(query,

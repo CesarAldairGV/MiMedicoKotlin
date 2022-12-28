@@ -30,13 +30,16 @@ class SendImageDialogFragment(private val consultId: String, private val image: 
         _binding = FragmentSendImageBinding.inflate(inflater, container, false)
         binding.chatSendImgImg.setImageURI(image)
 
+        viewModel.imageState.observe(viewLifecycleOwner){
+            if(it) dismiss()
+        }
+
         binding.chatSendImgCancel.setOnClickListener {
             dismiss()
         }
 
         binding.chatSendImgSend.setOnClickListener {
             viewModel.sendImage(consultId, (binding.chatSendImgImg.drawable as BitmapDrawable).bitmap)
-            dismiss()
         }
 
         return binding.root
