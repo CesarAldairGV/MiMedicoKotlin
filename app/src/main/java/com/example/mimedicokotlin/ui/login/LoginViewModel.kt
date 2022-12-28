@@ -6,9 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mimedicokotlin.services.AuthService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel(){
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val authService: AuthService
+) : ViewModel(){
 
     private val TAG = "LoginViewModel"
 
@@ -17,8 +22,6 @@ class LoginViewModel : ViewModel(){
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult : LiveData<LoginResult> get() = _loginResult
-
-    private val authService = AuthService()
 
     private fun checkEmail(email: String): Boolean{
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()

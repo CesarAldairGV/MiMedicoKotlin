@@ -7,20 +7,18 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.databinding.FragmentChatBinding
-import com.example.mimedicokotlin.services.ConsultService
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.MetadataChanges
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ChatFragment : Fragment() {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel = ChatViewModel()
+    private val viewModel : ChatViewModel by viewModels()
 
     private lateinit var adapter: ChatAdapter
 

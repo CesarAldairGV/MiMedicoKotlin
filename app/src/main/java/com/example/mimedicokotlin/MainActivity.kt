@@ -8,9 +8,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.mimedicokotlin.databinding.ActivityMainBinding
+import com.example.mimedicokotlin.hilt.App
 import com.example.mimedicokotlin.ui.home.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -22,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        if(firebaseAuth.currentUser != null){
+        if((application as App).getCurrentUserId() != null){
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             return

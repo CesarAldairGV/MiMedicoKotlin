@@ -7,14 +7,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentSignupBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignupFragment : Fragment() {
 
-    private var viewModel: SignupViewModel = SignupViewModel()
-
+    private val viewModel: SignupViewModel by viewModels()
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
 

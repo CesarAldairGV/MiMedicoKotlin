@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
@@ -12,11 +11,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class PetitionService {
+class PetitionService(
+    private val authService: AuthService
+) {
 
     private val TAG = "PetitionService"
-
-    private val authService = AuthService()
 
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
@@ -82,14 +81,6 @@ class PetitionService {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         return baos.toByteArray()
     }
-
-    fun getPetitionsByCurrentUserQuery(): Query =
-        getPetitionsByUserIdQuery(authService.getCurrentUser()!!.uid)
-
-    fun getPetitionsByUserIdQuery(userId: String): Query =
-        FirebaseFirestore.getInstance().collection("petitions")
-            .whereEqualTo("userId",userId)
-            .whereEqualTo("finished",false)
 
     suspend fun getPetitionById(petitionId: String): DocumentSnapshot {
         return FirebaseFirestore.getInstance().collection("petitions")

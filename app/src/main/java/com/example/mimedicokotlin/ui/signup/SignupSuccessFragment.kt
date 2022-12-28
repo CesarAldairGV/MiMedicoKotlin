@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mimedicokotlin.databinding.FragmentSignupSuccessBinding
 
-
 class SignupSuccessFragment : Fragment() {
 
     private var _binding: FragmentSignupSuccessBinding? = null

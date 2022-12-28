@@ -2,21 +2,16 @@ package com.example.mimedicokotlin.services
 
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class ProposalService {
-    private val petitionService = PetitionService()
-    private val consultService = ConsultService()
+class ProposalService(
+    private val petitionService : PetitionService,
+    private val consultService : ConsultService
+) {
 
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-
-    fun getProposalsByPetitionIdQuery(petitionId: String): Query =
-        FirebaseFirestore.getInstance()
-        .collection("proposals")
-        .whereEqualTo("petitionId",petitionId)
 
     suspend fun getProposalById(proposalId: String): DocumentSnapshot{
         return FirebaseFirestore.getInstance().collection("proposals")

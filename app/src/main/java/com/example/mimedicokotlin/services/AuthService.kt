@@ -6,11 +6,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.tasks.await
 
-class AuthService {
+class AuthService(
+    private val userService : UserService
+){
 
     private val TAG = "AuthService"
-
-    private val userService = UserService()
 
     suspend fun login(email: String, password: String): Int {
         val auth = FirebaseAuth.getInstance()

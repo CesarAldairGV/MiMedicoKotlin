@@ -7,10 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.databinding.FragmentProposalsBinding
-import com.example.mimedicokotlin.services.ProposalService
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.MetadataChanges
 
 class ProposalsFragment : Fragment() {
 
@@ -46,7 +42,5 @@ class ProposalsFragment : Fragment() {
 
         return binding.root
     }
-
-
 
 }

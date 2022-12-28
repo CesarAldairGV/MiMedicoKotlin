@@ -6,17 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mimedicokotlin.services.AuthService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SignupViewModel: ViewModel() {
+@HiltViewModel
+class SignupViewModel @Inject constructor(
+    private val authService : AuthService
+): ViewModel() {
 
     private val _signupForm = MutableLiveData<SignupFormState>()
     val signupForm : LiveData<SignupFormState> = _signupForm
 
     private val _signupResult = MutableLiveData<Boolean>()
     val signupResult : LiveData<Boolean> = _signupResult
-
-    private val authService = AuthService()
 
     fun singup(firstname: String, lastname: String, email: String, curp: String, password: String){
         viewModelScope.launch {

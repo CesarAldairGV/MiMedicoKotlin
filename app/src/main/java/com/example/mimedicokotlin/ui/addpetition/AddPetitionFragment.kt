@@ -9,14 +9,17 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentAddPetitionBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddPetitionFragment : Fragment() {
 
     private val TAG = "AddPetitionFragment"
 
-    private val viewModel = AddPetitionViewModel()
+    private val viewModel : AddPetitionViewModel by viewModels()
     private var _binding: FragmentAddPetitionBinding? = null
     private val binding get() = _binding!!
 

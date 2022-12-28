@@ -10,8 +10,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.MetadataChanges
-import kotlinx.coroutines.tasks.await
-
 
 class ProposalsAdapter(options: FirestoreRecyclerOptions<ProposalItem>)
     : FirestoreRecyclerAdapter<ProposalItem, ProposalItemViewHolder>(options){

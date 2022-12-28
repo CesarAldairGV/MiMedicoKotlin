@@ -9,21 +9,24 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentPetitionsBinding
-import com.example.mimedicokotlin.services.AuthService
-import com.example.mimedicokotlin.services.PetitionService
+import com.example.mimedicokotlin.hilt.App
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.MetadataChanges
 
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class PetitionsFragment : Fragment() {
 
     private var _binding: FragmentPetitionsBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adapter: FirestoreRecyclerAdapter<PetitionItem, PetitionItemViewHolder>
+    private lateinit var app: App
 
-    private val authService = AuthService()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        app = activity?.application as App
+    }
 
     override fun onStart() {
         super.onStart()
@@ -39,7 +42,7 @@ class PetitionsFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
-        adapter = PetitionsAdapter.getAdapter(authService.getCurrentUser()!!.uid)
+        adapter = PetitionsAdapter.getAdapter(app.getCurrentUserId()!!)
         binding.petitionsList.layoutManager = linearLayoutManager
         binding.petitionsList.adapter = adapter
 

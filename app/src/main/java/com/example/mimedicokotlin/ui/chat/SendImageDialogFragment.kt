@@ -9,12 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import com.example.mimedicokotlin.databinding.FragmentSendImageBinding
-import com.example.mimedicokotlin.services.ConsultService
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class SendImageDialogFragment(private val consultId: String, private val image: Uri) : DialogFragment() {
 
-    private val viewModel = SendImageViewModel()
+    private val viewModel : SendImageViewModel by viewModels()
 
     private var _binding: FragmentSendImageBinding? = null
     private val binding get() = _binding!!

@@ -5,14 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentProposalBinding
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProposalFragment : Fragment() {
 
-    private val viewModel = ProposalViewModel()
+    private val viewModel: ProposalViewModel by viewModels()
     private var _binding: FragmentProposalBinding? = null
     private val binding get() = _binding!!
 
@@ -45,7 +48,7 @@ class ProposalFragment : Fragment() {
         }
 
         binding.propAccept.setOnClickListener {
-            viewModel.accept(arguments?.getString("petitionId")!!,arguments?.getString("proposalId")!!)
+            viewModel.accept(arguments?.getString("proposalId")!!)
         }
 
         return binding.root

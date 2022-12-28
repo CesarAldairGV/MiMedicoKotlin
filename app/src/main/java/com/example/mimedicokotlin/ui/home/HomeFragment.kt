@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.mimedicokotlin.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val viewModel = HomeViewModel()
+    private val viewModel: HomeViewModel by viewModels()
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 

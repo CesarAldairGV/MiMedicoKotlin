@@ -7,16 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.databinding.FragmentConsultsBinding
-import com.example.mimedicokotlin.services.AuthService
+import com.example.mimedicokotlin.hilt.App
 
 class ConsultsFragment : Fragment() {
 
     private var _binding: FragmentConsultsBinding? = null
     private val binding get() = _binding!!
 
-    private val authService = AuthService()
-
     private lateinit var adapter : ConsultsAdapter
+    private lateinit var app: App
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        app = activity?.application as App
+    }
 
     override fun onStart() {
         super.onStart()
@@ -32,7 +36,7 @@ class ConsultsFragment : Fragment() {
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
-        adapter = ConsultsAdapter.getAdapter(authService.getCurrentUser()!!.uid)
+        adapter = ConsultsAdapter.getAdapter(app.getCurrentUserId()!!)
 
         binding.consultsList.layoutManager = linearLayoutManager
         binding.consultsList.adapter = adapter

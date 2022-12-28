@@ -11,17 +11,18 @@ import androidx.navigation.ui.*
 import com.example.mimedicokotlin.MainActivity
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.ActivityHomeBinding
-import com.example.mimedicokotlin.services.AuthService
+import com.example.mimedicokotlin.hilt.App
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private val TAG = "HomeActivity"
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomeBinding
-    private val authService = AuthService()
+    private lateinit var app: App
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,8 @@ class HomeActivity : AppCompatActivity() {
 
         findViewById<BottomNavigationView>(R.id.home_navigation)
             .setupWithNavController(navController)
+
+        app = application as App
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -54,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_logout -> {
-                authService.logout()
+                app.logout()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
