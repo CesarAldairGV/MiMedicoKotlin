@@ -26,8 +26,8 @@
             android:layout_height="56dp"
             app:elevation="0dp"
             app:itemBackground="?attr/colorPrimary"
-            app:itemIconTint="@color/teal_700"
-            app:itemTextColor="@color/teal_700"
+            app:itemIconTint="?attr/colorPrimaryVariant"
+            app:itemTextColor="?attr/colorPrimaryVariant"
             app:menu="@menu/nav_menu" />
 
 

@@ -73,15 +73,15 @@ class ConsultService {
     }
 
     suspend fun sendImage(consultId: String, bitmap: Bitmap): Boolean{
-        val bytes = getImageBytes(bitmap)
-        val res = FirebaseStorage.getInstance()
-            .getReference("chatimg")
-            .child(UUID.randomUUID().toString())
-            .putBytes(bytes)
-            .await()
-        val url = res.storage.downloadUrl.await()
         return try{
             Log.d(tag, "Sending a Image...")
+            val bytes = getImageBytes(bitmap)
+            val res = FirebaseStorage.getInstance()
+                .getReference("chatimg")
+                .child(UUID.randomUUID().toString())
+                .putBytes(bytes)
+                .await()
+            val url = res.storage.downloadUrl.await()
             FirebaseFirestore.getInstance().collection("consults")
                 .document(consultId)
                 .collection("chat")
