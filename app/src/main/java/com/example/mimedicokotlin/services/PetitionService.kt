@@ -5,8 +5,10 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.Timestamp
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
+import java.time.Instant.now
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -43,6 +45,7 @@ class PetitionService(
                     "subject" to subject,
                     "body" to body,
                     "urlPhoto" to url,
+                    "timestamp" to Timestamp.now().seconds,
                     "finished" to false
                 ))
                 .await()
@@ -69,6 +72,7 @@ class PetitionService(
                     "date" to date,
                     "subject" to subject,
                     "body" to body,
+                    "timestamp" to Timestamp.now().seconds,
                     "finished" to false
                 ))
                 .await()

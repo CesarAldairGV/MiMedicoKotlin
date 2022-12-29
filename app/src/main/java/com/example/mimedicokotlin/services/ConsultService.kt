@@ -40,6 +40,7 @@ class ConsultService {
                         "subject" to subject,
                         "medicName" to medicName,
                         "userName" to userName,
+                        "timestamp" to Timestamp.now().seconds,
                         "date" to date
                     )
                 )

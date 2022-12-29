@@ -30,6 +30,7 @@ class PetitionsAdapter(options: FirestoreRecyclerOptions<PetitionItem>):
             val query = FirebaseFirestore.getInstance().collection("petitions")
                 .whereEqualTo("userId",userId)
                 .whereEqualTo("finished",false)
+                .orderBy("timestamp")
 
             val options = FirestoreRecyclerOptions.Builder<PetitionItem>()
                 .setQuery(query, MetadataChanges.INCLUDE) {

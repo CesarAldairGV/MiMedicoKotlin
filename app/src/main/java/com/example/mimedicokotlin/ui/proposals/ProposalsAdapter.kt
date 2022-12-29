@@ -30,6 +30,7 @@ class ProposalsAdapter(options: FirestoreRecyclerOptions<ProposalItem>)
             val query = FirebaseFirestore.getInstance()
                 .collection("proposals")
                 .whereEqualTo("petitionId",petitionId)
+                .orderBy("timestamp")
 
             val options = FirestoreRecyclerOptions.Builder<ProposalItem>()
                 .setQuery(query, MetadataChanges.INCLUDE){

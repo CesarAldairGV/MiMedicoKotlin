@@ -27,6 +27,7 @@ class ConsultsAdapter(options: FirestoreRecyclerOptions<ConsultItem>):
 
             val query = FirebaseFirestore.getInstance().collection("consults")
                 .whereEqualTo("userId",userId)
+                .orderBy("timestamp")
 
             val options = FirestoreRecyclerOptions.Builder<ConsultItem>()
                 .setQuery(query,
