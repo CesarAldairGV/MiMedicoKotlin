@@ -73,6 +73,7 @@ class SignupFragment : Fragment() {
         }
         binding.signupAction.setOnClickListener {
             signup()
+            binding.signupProgressBar.visibility = View.VISIBLE
         }
 
         binding.signupAction.isEnabled = false

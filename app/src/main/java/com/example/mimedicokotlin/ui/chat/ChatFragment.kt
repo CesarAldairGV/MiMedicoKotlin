@@ -58,6 +58,7 @@ class ChatFragment : Fragment() {
 
         binding.chatMsgSend.setOnClickListener {
             viewModel.sendMessage(consultId, binding.chatMsgField.text.toString())
+            binding.chatMsgField.text.clear()
         }
 
         binding.chatMsgImg.setOnClickListener {

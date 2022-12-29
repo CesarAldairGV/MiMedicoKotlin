@@ -6,7 +6,7 @@
     <string name="menu_logout">Log Out</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_petitions">Petitions</string>
-    <string name="menu_consults">Queries</string>
+    <string name="menu_consults">Consults</string>
 
     <string name="main_text">My Medic</string>
     <string name="main_button1">I don\'t have an account</string>

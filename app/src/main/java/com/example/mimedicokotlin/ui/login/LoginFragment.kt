@@ -56,6 +56,7 @@ class LoginFragment : Fragment() {
         }
         binding.loginAction.setOnClickListener {
             login()
+            binding.loginProgressBar.visibility = View.VISIBLE
         }
 
         binding.loginAction.isEnabled = false

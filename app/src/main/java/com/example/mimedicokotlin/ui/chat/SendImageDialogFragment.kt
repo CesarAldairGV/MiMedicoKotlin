@@ -39,6 +39,7 @@ class SendImageDialogFragment(private val consultId: String, private val image: 
         }
 
         binding.chatSendImgSend.setOnClickListener {
+            binding.chatSendImgProgressBar.visibility = View.VISIBLE
             viewModel.sendImage(consultId, (binding.chatSendImgImg.drawable as BitmapDrawable).bitmap)
         }
 

@@ -60,13 +60,15 @@ class AddPetitionFragment : Fragment() {
                 binding.addpBody.removeTextChangedListener(bodyWatcher)
                 binding.addpSubject.text.clear()
                 binding.addpBody.text.clear()
-                binding.addpImage.setImageResource(R.drawable.ic_launcher_background)
+                binding.addpImage.setImageResource(android.R.color.transparent)
                 binding.addpButtonAction.isEnabled = false
                 isImageSelected = false
                 binding.addpSubject.addTextChangedListener(subjectWatcher)
                 binding.addpBody.addTextChangedListener(bodyWatcher)
+                binding.addpProgressBar.visibility = View.GONE
             }else{
                 Toast.makeText(activity, getString(R.string.addp_err1), Toast.LENGTH_LONG).show()
+                binding.addpProgressBar.visibility = View.GONE
             }
         }
 
@@ -76,6 +78,7 @@ class AddPetitionFragment : Fragment() {
 
         binding.addpButtonAction.setOnClickListener {
             sendPetition()
+            binding.addpProgressBar.visibility = View.VISIBLE
         }
 
         binding.addpButtonAction.isEnabled = false
@@ -83,14 +86,14 @@ class AddPetitionFragment : Fragment() {
         return binding.root
     }
 
-    fun checkData(){
+    private fun checkData(){
         viewModel.checkData(
             binding.addpSubject.text.toString(),
             binding.addpBody.text.toString(),
         )
     }
 
-    fun sendPetition(){
+    private fun sendPetition(){
         val subject = binding.addpSubject.text.toString()
         val body = binding.addpBody.text.toString()
         if(isImageSelected) {
