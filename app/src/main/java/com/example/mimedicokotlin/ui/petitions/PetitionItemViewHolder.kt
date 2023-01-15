@@ -20,7 +20,10 @@ class PetitionItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         subject.text = petitionItem.subject
         date.text = petitionItem.date
         body.text = petitionItem.body
-        if(petitionItem.urlPhoto != null) Picasso.get().load(petitionItem.urlPhoto).into(img)
+        if(petitionItem.urlPhoto != null) {
+            img.visibility = View.VISIBLE
+            Picasso.get().load(petitionItem.urlPhoto).into(img)
+        }
         else img.visibility = ImageView.GONE
 
         proposalButton.setOnClickListener{

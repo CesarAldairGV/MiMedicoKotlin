@@ -33,7 +33,7 @@ class PetitionsAdapter(options: FirestoreRecyclerOptions<PetitionItem>):
                 .orderBy("timestamp")
 
             val options = FirestoreRecyclerOptions.Builder<PetitionItem>()
-                .setQuery(query, MetadataChanges.INCLUDE) {
+                .setQuery(query, MetadataChanges.EXCLUDE) {
                     it.toPetitionItem()
                 }
                 .build()

@@ -44,7 +44,7 @@ class ChatAdapter(val recyclerView: RecyclerView, options: FirestoreRecyclerOpti
 
             val options = FirestoreRecyclerOptions.Builder<MessageItem>()
                 .setQuery(query,
-                    MetadataChanges.INCLUDE){
+                    MetadataChanges.EXCLUDE){
                     it.toMessageItem()
                 }
                 .build()

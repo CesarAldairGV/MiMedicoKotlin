@@ -18,6 +18,7 @@ class MessageItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bindData(messageItem: MessageItem){
         date.text = messageItem.date
         if(messageItem.message == null){
+            image.visibility = View.VISIBLE
             Picasso.get().load(messageItem.imgUrl).into(image)
             body.visibility = View.GONE
         }else{

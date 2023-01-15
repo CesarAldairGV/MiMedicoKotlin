@@ -31,7 +31,7 @@ class ConsultsAdapter(options: FirestoreRecyclerOptions<ConsultItem>):
 
             val options = FirestoreRecyclerOptions.Builder<ConsultItem>()
                 .setQuery(query,
-                    MetadataChanges.INCLUDE){
+                    MetadataChanges.EXCLUDE){
                     it.toConsultItem()
                 }
                 .build()
