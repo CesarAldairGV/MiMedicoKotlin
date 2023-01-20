@@ -45,7 +45,7 @@ class ProposalService(
                 proposal["medicId",String::class.java]!!,
                 petition["userId",String::class.java]!!,
                 proposal["medicName",String::class.java]!!,
-                petition["userName",String::class.java]!!,
+                petition["name",String::class.java]!!,
                 petition["subject", String::class.java]!!,
                 LocalDateTime.now().format(formatter)
             )

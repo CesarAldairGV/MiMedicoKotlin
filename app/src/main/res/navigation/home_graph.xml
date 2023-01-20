@@ -55,9 +55,9 @@
             android:name="petitionId"
             app:argType="string" />
         <action
-            android:id="@+id/action_ProposalFragment_to_ChatFragment"
+            android:id="@+id/action_ProposalFragment_to_ConsultFragment"
             app:popUpTo="@id/PetitionsFragment"
-            app:destination="@id/ChatFragment" />
+            app:destination="@id/ConsultsFragment" />
     </fragment>
 
     <fragment

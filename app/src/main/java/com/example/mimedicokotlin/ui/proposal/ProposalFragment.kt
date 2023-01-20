@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mimedicokotlin.R
@@ -34,17 +35,17 @@ class ProposalFragment : Fragment() {
 
         viewModel.proposalInfo.observe(viewLifecycleOwner){
             binding.propName.text = it.name
-            binding.propYears.text = it.yearsExp
+            binding.propYears.text = "${it.yearsExp}"
             binding.propBussiness.text = it.business
             binding.propSchool.text = it.school
             binding.propMessage.text = it.body
-            binding.propLikes.text = it.likes
+            binding.propLikes.text = "${it.likes}"
             Picasso.get().load(it.photoUrl).into(binding.propPhoto)
             binding.root.visibility = View.VISIBLE
         }
 
         viewModel.acceptState.observe(viewLifecycleOwner){
-            findNavController().navigate(R.id.action_ProposalFragment_to_ChatFragment)
+            findNavController().navigate(R.id.action_ProposalFragment_to_ConsultFragment)
         }
 
         binding.propAccept.setOnClickListener {

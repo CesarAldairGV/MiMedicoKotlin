@@ -31,11 +31,11 @@ class ProposalViewModel @Inject constructor(
 
             val proposal = ProposalInfo(
                 doc["medicName",String::class.java]!!,
-                doc["yearsExp",String::class.java]!!,
+                doc["yearsExp",Int::class.java]!!,
                 doc["business",String::class.java]!!,
                 doc["school",String::class.java]!!,
                 doc["photoUrl",String::class.java]!!,
-                doc["likes",String::class.java]!!,
+                doc["likes",Int::class.java]!!,
                 doc["body",String::class.java]!!
             )
 
