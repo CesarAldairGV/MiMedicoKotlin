@@ -50,6 +50,6 @@
         android:id="@+id/HomeActivity"
         android:name="com.example.mimedicokotlin.ui.home.HomeActivity"
         android:label="@string/title_activity_home"
-        android:layout="@layout/activity_home">
+        tools:layout="@layout/activity_home">
     </activity>
 </navigation>

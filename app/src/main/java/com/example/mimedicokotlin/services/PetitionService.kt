@@ -40,7 +40,7 @@ class PetitionService(
             FirebaseFirestore.getInstance().collection("petitions")
                 .add(hashMapOf(
                     "userId" to uid,
-                    "name" to name,
+                    "userName" to name,
                     "date" to date,
                     "subject" to subject,
                     "body" to body,
@@ -68,7 +68,7 @@ class PetitionService(
             FirebaseFirestore.getInstance().collection("petitions")
                 .add(hashMapOf(
                     "userId" to uid,
-                    "name" to name,
+                    "userName" to name,
                     "date" to date,
                     "subject" to subject,
                     "body" to body,
