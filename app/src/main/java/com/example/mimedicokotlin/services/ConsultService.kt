@@ -41,7 +41,8 @@ class ConsultService {
                         "medicName" to medicName,
                         "userName" to userName,
                         "timestamp" to Timestamp.now().seconds,
-                        "date" to date
+                        "date" to date,
+                        "finished" to false
                     )
                 )
                 .await()
