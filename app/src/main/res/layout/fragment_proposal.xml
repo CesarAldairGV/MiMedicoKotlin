@@ -4,152 +4,223 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/background"
     tools:context=".ui.proposal.ProposalFragment">
 
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/prop_photo"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/roundedImageView"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/prop_name_text"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/prop_cardData"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/proposal_name"
-        app:layout_constraintStart_toEndOf="@+id/prop_photo"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/prop_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prop_name_text"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/prop_years_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/prop_photo"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/prop_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/proposal_name"
+                app:layout_constraintStart_toEndOf="@+id/prop_photo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/prop_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/prop_name_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/prop_years_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/proposal_years"
+                app:layout_constraintStart_toEndOf="@+id/prop_photo"
+                app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
+
+            <TextView
+                android:id="@+id/prop_years"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/prop_years_text"
+                app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
+
+            <TextView
+                android:id="@+id/prop_bussiness_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/proposal_business"
+                app:layout_constraintStart_toEndOf="@+id/prop_photo"
+                app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
+
+            <TextView
+                android:id="@+id/prop_bussiness"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/prop_bussiness_text"
+                app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
+
+            <TextView
+                android:id="@+id/prop_likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="@string/proposal_likes"
+                android:textSize="22sp"
+                android:visibility="gone"
+                app:drawableStartCompat="@android:drawable/btn_star_big_on"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prop_photo" />
+
+            <TextView
+                android:id="@+id/prop_school_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/proposal_school"
+                app:layout_constraintStart_toEndOf="@+id/prop_photo"
+                app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
+
+            <TextView
+                android:id="@+id/prop_school"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/prop_school_text"
+                app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
+
+            <TextView
+                android:id="@+id/prop_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/proposal_message"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prop_likes" />
+
+            <TextView
+                android:id="@+id/prop_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prop_message_text" />
+
+            <Button
+                android:id="@+id/prop_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/proposal_accept"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prop_message" />
+
+            <Button
+                android:id="@+id/prop_refuse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/proposal_refuse"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/prop_accept"
+                app:layout_constraintTop_toBottomOf="@+id/prop_message" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/prop_cardComments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="@string/proposal_years"
-        app:layout_constraintStart_toEndOf="@+id/prop_photo"
-        app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
-
-    <TextView
-        android:id="@+id/prop_years"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prop_years_text"
-        app:layout_constraintTop_toBottomOf="@+id/prop_name_text" />
-
-    <TextView
-        android:id="@+id/prop_bussiness_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/proposal_business"
-        app:layout_constraintStart_toEndOf="@+id/prop_photo"
-        app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
-
-    <TextView
-        android:id="@+id/prop_bussiness"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prop_bussiness_text"
-        app:layout_constraintTop_toBottomOf="@+id/prop_years_text" />
-
-    <TextView
-        android:id="@+id/prop_likes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:text="@string/proposal_likes"
-        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prop_photo"
-        app:drawableStartCompat="@android:drawable/btn_star_big_on" />
+        app:layout_constraintTop_toBottomOf="@+id/prop_cardData">
 
-    <TextView
-        android:id="@+id/prop_school_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/proposal_school"
-        app:layout_constraintStart_toEndOf="@+id/prop_photo"
-        app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/prop_school"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/prop_school_text"
-        app:layout_constraintTop_toBottomOf="@+id/prop_bussiness_text" />
+            <TextView
+                android:id="@+id/prop_comments_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="Comentarios: "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/prop_message_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/proposal_message"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prop_likes" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/prop_comments_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/prop_comments_text" />
 
-    <TextView
-        android:id="@+id/prop_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prop_message_text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/prop_accept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/proposal_accept"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prop_message" />
+    </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/prop_refuse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/proposal_refuse"
-        app:layout_constraintStart_toEndOf="@+id/prop_accept"
-        app:layout_constraintTop_toBottomOf="@+id/prop_message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

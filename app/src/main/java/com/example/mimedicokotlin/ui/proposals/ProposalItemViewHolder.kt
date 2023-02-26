@@ -22,7 +22,9 @@ class ProposalItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         Picasso.get().load(proposal.photoUrl).into(img)
 
         showProposalButton.setOnClickListener {
-            val bundle = bundleOf("proposalId" to proposal.proposalId,"petitionId" to proposal.petitionId)
+            val bundle = bundleOf("proposalId" to proposal.proposalId,
+                "petitionId" to proposal.petitionId,
+                "medicId" to proposal.medicId)
             itemView.findNavController().navigate(R.id.action_ProposalsFragment_to_ProposalFragment, bundle)
         }
     }

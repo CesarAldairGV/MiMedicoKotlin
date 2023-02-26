@@ -1,6 +1,7 @@
 package com.example.mimedicokotlin.services
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.tasks.await
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -26,6 +27,14 @@ class CommentService(private val authService: AuthService) {
         firestore.collection("consults")
             .document(consultId)
             .update("hasComment",true)
+            .await()
+    }
+
+    suspend fun getCommentsByMedicId(medicId: String): QuerySnapshot? {
+        return FirebaseFirestore.getInstance().collection("medics")
+            .document(medicId)
+            .collection("comments")
+            .get()
             .await()
     }
 }

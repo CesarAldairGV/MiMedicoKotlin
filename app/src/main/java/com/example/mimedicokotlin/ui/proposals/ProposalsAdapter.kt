@@ -46,7 +46,8 @@ class ProposalsAdapter(options: FirestoreRecyclerOptions<ProposalItem>)
             petitionId = this["petitionId", String::class.java]!!,
             medicName = this["medicName", String::class.java]!!,
             date = this["date", String::class.java]!!,
-            photoUrl = this["photoUrl", String::class.java]!!
+            photoUrl = this["photoUrl", String::class.java]!!,
+            medicId = this["medicId", String::class.java]!!,
         )
     }
 }

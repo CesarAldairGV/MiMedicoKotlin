@@ -58,6 +58,9 @@
             android:id="@+id/action_ProposalFragment_to_ConsultFragment"
             app:popUpTo="@id/PetitionsFragment"
             app:destination="@id/ConsultsFragment" />
+        <argument
+            android:name="medicId"
+            app:argType="string" />
     </fragment>
 
     <fragment

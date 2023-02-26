@@ -5,5 +5,6 @@ data class ProposalItem(
     val petitionId: String,
     val medicName: String,
     val date: String,
-    val photoUrl: String
+    val photoUrl: String,
+    val medicId: String
 )

@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentProposalBinding
+import com.example.mimedicokotlin.ui.consults.ConsultsAdapter
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,9 +22,16 @@ class ProposalFragment : Fragment() {
     private var _binding: FragmentProposalBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var adapter : CommentsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getProposalInfo(arguments?.getString("proposalId")!!)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
     }
 
     override fun onCreateView(
@@ -51,6 +60,14 @@ class ProposalFragment : Fragment() {
         binding.propAccept.setOnClickListener {
             viewModel.accept(arguments?.getString("proposalId")!!)
         }
+
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
+        adapter = CommentsAdapter.getAdapter(arguments?.getString("medicId")!!)
+
+        binding.propCommentsList.layoutManager = linearLayoutManager
+        binding.propCommentsList.adapter = adapter
 
         return binding.root
     }
