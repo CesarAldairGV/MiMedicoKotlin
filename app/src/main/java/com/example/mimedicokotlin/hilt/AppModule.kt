@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.w3c.dom.Comment
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -25,4 +26,8 @@ class AppModule {
     @Provides
     fun providesProposalService(): ProposalService =
         ProposalService(providesPetitionService(), providesConsultService())
+
+    @Provides
+    fun providesCommentService(): CommentService =
+        CommentService(providesAuthService())
 }

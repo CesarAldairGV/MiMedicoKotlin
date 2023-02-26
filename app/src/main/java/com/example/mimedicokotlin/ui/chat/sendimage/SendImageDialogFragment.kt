@@ -1,4 +1,4 @@
-package com.example.mimedicokotlin.ui.chat
+package com.example.mimedicokotlin.ui.chat.sendimage
 
 import android.app.Dialog
 import android.graphics.drawable.BitmapDrawable
