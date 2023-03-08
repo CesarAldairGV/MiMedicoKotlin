@@ -1,14 +1,23 @@
 package com.example.mimedicokotlin.ui.chat
 
+import android.Manifest
+import android.app.Activity
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentChatBinding
 import com.example.mimedicokotlin.ui.chat.sendcomment.SendCommentFragment
 import com.example.mimedicokotlin.ui.chat.sendimage.SendImageDialogFragment
@@ -26,6 +35,18 @@ class ChatFragment : Fragment() {
 
     private lateinit var consultId: String
     private lateinit var medicId: String
+    private lateinit var userId: String
+
+    private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+
+    val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
+            val count = it.values.stream().filter{ it }.count()
+            if(count == 2L){
+                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId)
+                findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
+            }
+        }
 
     private var getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
         if(it == null) return@registerForActivityResult
@@ -60,6 +81,7 @@ class ChatFragment : Fragment() {
             binding.chatBody.text = it.body
             binding.chatMedic.text = it.medicName
             medicId = it.medicId
+            userId = it.userId
 
             if(it.isFinished){
                 binding.chatMsgImg.isEnabled = false
@@ -95,8 +117,28 @@ class ChatFragment : Fragment() {
             newFragment.show(fragmentManager, "dialog")
         }
 
+        binding.chatVideochat.setOnClickListener{
+            if(!checkPermissions()){
+                requestPermissionLauncher.launch(permissions)
+            }else{
+                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId)
+                findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
+            }
+        }
+
         binding.chatMsgSend.isEnabled = false
         viewModel.getConsultData(consultId)
         return binding.root
     }
+
+    private fun checkPermissions(): Boolean {
+        for (per in permissions) {
+            if (ContextCompat.checkSelfPermission(requireContext(), per)
+                != PackageManager.PERMISSION_GRANTED) {
+                return false
+            }
+        }
+        return true
+    }
+
 }

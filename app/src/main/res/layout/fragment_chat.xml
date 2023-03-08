@@ -19,6 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/chat_videochat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Videochat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chat_medic_text" />
+
             <TextView
                 android:id="@+id/chat_subj"
                 android:layout_width="wrap_content"
@@ -45,8 +54,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Medico:"
                 android:paddingBottom="5dp"
+                android:text="Medico:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chat_body" />
 
@@ -68,11 +77,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Calificar y Comentar Medico"
-                android:visibility="gone"
+                android:text="Comentario"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chat_medic_text" />
+                app:layout_constraintStart_toEndOf="@+id/chat_videochat"
+                app:layout_constraintTop_toBottomOf="@+id/chat_medic_text"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

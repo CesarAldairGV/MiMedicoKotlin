@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import java.util.*
 
 
-class Videochat : Fragment() {
+class VideochatFragment : Fragment() {
 
     private lateinit var peerUsername: String
     private lateinit var myUsername: String
@@ -109,7 +109,7 @@ class Videochat : Fragment() {
 
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.settings.mediaPlaybackRequiresUserGesture = false
-        binding.webView.addJavascriptInterface( JavascriptInterface(this@Videochat),"Android")
+        binding.webView.addJavascriptInterface( JavascriptInterface(this@VideochatFragment),"Android")
         binding.webView.settings.domStorageEnabled = true
         WebView.setWebContentsDebuggingEnabled(true)
 

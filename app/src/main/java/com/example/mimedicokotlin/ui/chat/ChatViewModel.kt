@@ -43,6 +43,7 @@ class ChatViewModel @Inject constructor(
         medicName = this["medicName",String::class.java]!!,
         medicId = this["medicId",String::class.java]!!,
         isFinished = this["finished",Boolean::class.java]!!,
-        hasComment = this["hasComment",Boolean::class.java]!!
+        hasComment = this["hasComment",Boolean::class.java]!!,
+        userId = this["userId",String::class.java]!!
     )
 }
