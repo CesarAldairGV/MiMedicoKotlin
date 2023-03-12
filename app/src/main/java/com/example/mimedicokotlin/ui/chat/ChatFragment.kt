@@ -121,7 +121,7 @@ class ChatFragment : Fragment() {
             if(!checkPermissions()){
                 requestPermissionLauncher.launch(permissions)
             }else{
-                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId)
+                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId, "consultId" to consultId)
                 findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
             }
         }
