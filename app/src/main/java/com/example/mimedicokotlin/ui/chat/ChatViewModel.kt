@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mimedicokotlin.services.ConsultService
+import com.example.mimedicokotlinfirebase.dto.Consult
+import com.example.mimedicokotlinfirebase.dto.SendChatMessageRequest
+import com.example.mimedicokotlinfirebase.services.ConsultService
 import com.google.firebase.firestore.DocumentSnapshot
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,7 +25,12 @@ class ChatViewModel @Inject constructor(
 
     fun sendMessage(consultId: String, message: String){
         viewModelScope.launch {
-            consultService.sendMessage(consultId,message)
+            val messageRequest = SendChatMessageRequest(
+                consultId = consultId,
+                message = message,
+                medicPhotoUrl = null
+            )
+            consultService.sendMessage(messageRequest)
         }
     }
 
@@ -33,16 +40,16 @@ class ChatViewModel @Inject constructor(
 
     fun getConsultData(consultId: String){
         viewModelScope.launch {
-            _consultData.value = consultService.getConsultData(consultId).toConsultData()
+            _consultData.value = consultService.getConsultById(consultId)!!.toConsultData()
         }
     }
 
-    fun DocumentSnapshot.toConsultData() = ConsultData(
-        subject = this["subject",String::class.java]!!,
-        body = "TODO",
-        medicName = this["medicName",String::class.java]!!,
-        medicId = this["medicId",String::class.java]!!,
-        isFinished = this["finished",Boolean::class.java]!!,
-        hasComment = this["hasComment",Boolean::class.java]!!
+    fun Consult.toConsultData() = ConsultData(
+        subject = this.title,
+        body = this.body,
+        medicName = this.medicName,
+        medicId = this.medicId,
+        isFinished = this.finished,
+        hasComment = this.comment
     )
 }

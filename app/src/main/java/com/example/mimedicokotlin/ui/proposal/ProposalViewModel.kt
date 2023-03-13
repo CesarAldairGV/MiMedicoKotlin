@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mimedicokotlin.services.ProposalService
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.mimedicokotlinfirebase.dto.Proposal
+import com.example.mimedicokotlinfirebase.services.ProposalService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,19 +26,9 @@ class ProposalViewModel @Inject constructor(
 
     fun getProposalInfo(proposalId: String){
         viewModelScope.launch {
-            val doc = proposalService.getProposalById(proposalId)!!
-
-            val proposal = ProposalInfo(
-                doc["medicName",String::class.java]!!,
-                doc["yearsExp",Int::class.java]!!,
-                doc["business",String::class.java]!!,
-                doc["school",String::class.java]!!,
-                doc["photoUrl",String::class.java]!!,
-                doc["likes",Int::class.java]!!,
-                doc["body",String::class.java]!!
-            )
-
-            _proposalInfo.value = proposal
+            val proposal = proposalService.getProposalById(proposalId)!!
+            val proposalInfo = proposal.toProposalInfo()
+            _proposalInfo.value = proposalInfo
         }
     }
 
@@ -49,8 +38,17 @@ class ProposalViewModel @Inject constructor(
 
     fun accept(proposalId: String){
         viewModelScope.launch {
-            proposalService.acceptProposal(proposalId)
-            _acceptState.value = true
+            _acceptState.value = proposalService.acceptProposal(proposalId)
         }
     }
+
+    private fun Proposal.toProposalInfo() = ProposalInfo(
+        name = this.medicName,
+        yearsExp = this.yearsExp,
+        business = this.business,
+        school = this.school,
+        photoUrl = this.photoUrl,
+        likes = 0,
+        body = this.body
+    )
 }

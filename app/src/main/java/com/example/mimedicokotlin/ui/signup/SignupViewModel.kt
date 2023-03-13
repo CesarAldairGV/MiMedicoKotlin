@@ -5,14 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mimedicokotlin.services.AuthService
+import com.example.mimedicokotlinfirebase.services.UserAuthService
+import com.example.mimedicokotlinfirebase.dto.UserSignupRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
-    private val authService : AuthService
+    private val authService : UserAuthService
 ): ViewModel() {
 
     private val _signupForm = MutableLiveData<SignupFormState>()
@@ -23,7 +24,14 @@ class SignupViewModel @Inject constructor(
 
     fun singup(firstname: String, lastname: String, email: String, curp: String, password: String){
         viewModelScope.launch {
-            _signupResult.value = authService.signup(firstname,lastname, email, curp, password)
+            val signupRequest = UserSignupRequest(
+                firstname,
+                lastname,
+                email,
+                curp,
+                password
+            )
+            _signupResult.value = authService.signup(signupRequest)
         }
     }
 

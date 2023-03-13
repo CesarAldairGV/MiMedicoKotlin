@@ -5,13 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mimedicokotlin.services.PetitionService
+import com.example.mimedicokotlinfirebase.dto.CreatePetitionRequest
+import com.example.mimedicokotlinfirebase.services.PetitionService
+import com.example.mimedicokotlinfirebase.services.UserAuthService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AddPetitionViewModel @Inject constructor(
+    private val authService: UserAuthService,
     private val petitionService : PetitionService
 ): ViewModel() {
 
@@ -23,13 +26,23 @@ class AddPetitionViewModel @Inject constructor(
 
     fun sendPetition(subject: String, body:String, bitmap: Bitmap) {
         viewModelScope.launch {
-            _resultState.value = petitionService.addPetition(subject, body, bitmap)
+            val request = CreatePetitionRequest(
+                userId = authService.getCurrentUserId()!!,
+                title = subject,
+                body = body
+            )
+            _resultState.value = petitionService.createPetition(request, bitmap)
         }
     }
 
     fun sendPetition(subject: String, body: String) {
         viewModelScope.launch {
-            _resultState.value = petitionService.addPetition(subject, body)
+            val request = CreatePetitionRequest(
+                userId = authService.getCurrentUserId()!!,
+                title = subject,
+                body = body
+            )
+            _resultState.value = petitionService.createPetition(request)
         }
     }
 

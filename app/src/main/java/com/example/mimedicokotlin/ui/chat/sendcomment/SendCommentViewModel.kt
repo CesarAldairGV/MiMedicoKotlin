@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mimedicokotlin.services.CommentService
+import com.example.mimedicokotlinfirebase.dto.CreateCommentRequest
+import com.example.mimedicokotlinfirebase.services.CommentService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +20,12 @@ class SendCommentViewModel @Inject constructor(
 
     fun sendComment(consultId: String, medicId: String, comment: String){
         viewModelScope.launch {
-            commentService.sendComment(consultId,medicId, comment)
+            val commentRequest = CreateCommentRequest(
+                consultId = consultId,
+                medicId = medicId,
+                comment= comment
+            )
+            commentService.sendComment(commentRequest)
             _result.value = true
         }
     }
