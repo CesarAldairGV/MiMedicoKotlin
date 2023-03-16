@@ -2,54 +2,97 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/MainFragment">
+    android:id="@+id/home_graph"
+    app:startDestination="@id/ProfileFragment">
 
     <fragment
-        android:id="@+id/MainFragment"
-        android:name="com.example.mimedicokotlin.MainFragment"
-        android:label="@string/app_name"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_MainFragment_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
-        <action
-            android:id="@+id/action_MainFragment_to_SignupFragment"
-            app:destination="@id/SignupFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/SignupFragment"
-        android:name="com.example.mimedicokotlin.ui.signup.SignupFragment"
-        android:label="@string/signup_label"
-        tools:layout="@layout/fragment_signup">
-        <action
-            android:id="@+id/action_SignupFragment_to_SignupSuccessFragment"
-            app:popUpTo="@id/MainFragment"
-            app:destination="@id/SignupSuccessFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/SignupSuccessFragment"
-        android:name="com.example.mimedicokotlin.ui.signup.SignupSuccessFragment"
-        android:label="@string/signup_success_label"
-        tools:layout="@layout/fragment_signup_success">
-    </fragment>
-
-    <fragment
-        android:id="@+id/LoginFragment"
-        android:name="com.example.mimedicokotlin.ui.login.LoginFragment"
-        android:label="@string/login_label"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_LoginFragment_to_HomeActivity"
-            app:destination="@id/HomeActivity" />
-    </fragment>
-
-    <activity
-        android:id="@+id/HomeActivity"
-        android:name="com.example.mimedicokotlin.ui.home.HomeActivity"
+        android:id="@+id/ProfileFragment"
+        android:name="com.example.mimedicokotlin.ui.profile.ProfileFragment"
         android:label="@string/title_activity_home"
-        tools:layout="@layout/activity_home">
-    </activity>
+        tools:layout="@layout/fragment_profile"/>
+
+    <fragment
+        android:id="@+id/PetitionsFragment"
+        android:name="com.example.mimedicokotlin.ui.petitions.PetitionsFragment"
+        android:label="@string/petitions_label"
+        tools:layout="@layout/fragment_petitions">
+        <action
+            android:id="@+id/action_PetitionsFragment_to_AddPetitionFragment"
+            app:destination="@id/AddPetitionFragment" />
+        <action
+            android:id="@+id/action_PetitionsFragment_to_ProposalsFragment"
+            app:destination="@id/ProposalsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddPetitionFragment"
+        android:name="com.example.mimedicokotlin.ui.addpetition.AddPetitionFragment"
+        android:label="@string/addp_label"
+        tools:layout="@layout/fragment_add_petition" />
+
+    <fragment
+        android:id="@+id/ProposalsFragment"
+        android:name="com.example.mimedicokotlin.ui.proposals.ProposalsFragment"
+        android:label="@string/proposals_label"
+        tools:layout="@layout/fragment_proposals" >
+        <argument
+            android:name="petitionId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ProposalsFragment_to_ProposalFragment"
+            app:destination="@id/ProposalFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProposalFragment"
+        android:name="com.example.mimedicokotlin.ui.proposal.ProposalFragment"
+        android:label="@string/proposal_label"
+        tools:layout="@layout/fragment_proposal">
+        <argument
+            android:name="proposalId"
+            app:argType="string" />
+        <argument
+            android:name="petitionId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ProposalFragment_to_ConsultFragment"
+            app:popUpTo="@id/PetitionsFragment"
+            app:destination="@id/ConsultsFragment" />
+        <argument
+            android:name="medicId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ConsultsFragment"
+        android:name="com.example.mimedicokotlin.ui.consults.ConsultsFragment"
+        android:label="@string/consults_label"
+        tools:layout="@layout/fragment_consults" >
+        <action
+            android:id="@+id/action_ConsultsFragment_to_ChatFragment"
+            app:destination="@id/ChatFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ChatFragment"
+        android:name="com.example.mimedicokotlin.ui.chat.ChatFragment"
+        android:label="@string/chat_label"
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="consultId"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_to_HomeFragment"
+        app:destination="@id/HomeFragment" />
+
+    <action
+        android:id="@+id/action_to_PetitionsFragment"
+        app:destination="@id/PetitionsFragment" />
+
+    <action
+        android:id="@+id/action_to_ConsultsFragment"
+        app:destination="@id/ConsultsFragment" />
+
 </navigation>

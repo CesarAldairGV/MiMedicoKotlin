@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.mimedicokotlin.databinding.FragmentMainBinding
+import com.example.mimedicokotlin.databinding.FragmentAuthBinding
 
-class MainFragment : Fragment() {
+class AuthFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,7 +18,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentAuthBinding.inflate(inflater, container, false)
         return binding.root
 
     }
