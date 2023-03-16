@@ -20,7 +20,7 @@ class SendImageViewModel @Inject constructor(
 
     fun sendImage(consultId: String, bitmap: Bitmap){
         viewModelScope.launch {
-            consultService.sendImage(consultId,bitmap)
+            consultService.sendImage(consultId,bitmap,null)
             _imageState.value = true
         }
     }
