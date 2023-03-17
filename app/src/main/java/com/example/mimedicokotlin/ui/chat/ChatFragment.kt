@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.databinding.FragmentChatBinding
 import com.example.mimedicokotlin.ui.chat.sendcomment.SendCommentFragment
 import com.example.mimedicokotlin.ui.chat.sendimage.SendImageDialogFragment
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,6 +61,12 @@ class ChatFragment : Fragment() {
             binding.chatBody.text = it.body
             binding.chatMedic.text = it.medicName
             medicId = it.medicId
+
+            if(it.imgUrl != null){
+                binding.chatImg.visibility = View.VISIBLE
+                Picasso.get().load(it.imgUrl).into(binding.chatImg)
+                binding.chatImg.visibility = View.VISIBLE
+            }
 
             if(it.isFinished){
                 binding.chatMsgImg.isEnabled = false

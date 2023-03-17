@@ -44,12 +44,13 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    fun Consult.toConsultData() = ConsultData(
+    private fun Consult.toConsultData() = ConsultData(
         subject = this.title,
         body = this.body,
         medicName = this.medicName,
         medicId = this.medicId,
         isFinished = this.finished,
-        hasComment = this.comment
+        hasComment = this.comment,
+        imgUrl = this.imgUrl
     )
 }

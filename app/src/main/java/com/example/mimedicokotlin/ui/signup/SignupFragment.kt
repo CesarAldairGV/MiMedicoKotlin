@@ -39,7 +39,7 @@ class SignupFragment : Fragment() {
                 binding.signupEmail.error = getString(R.string.signup_email_err)
             }
             if(it.phoneError != null){
-                binding.signupCurp.error = getString(R.string.signup_phone_err)
+                binding.signupPhone.error = getString(R.string.signup_phone_err)
             }
             if(it.passwordError != null){
                 binding.signupPassword.error = getString(R.string.signup_password_err)
@@ -53,6 +53,7 @@ class SignupFragment : Fragment() {
             }else {
                 Toast.makeText(activity, getString(R.string.signup_err1), Toast.LENGTH_LONG)
                     .show()
+                binding.signupProgressBar.visibility = View.GONE
             }
         }
 
@@ -65,7 +66,7 @@ class SignupFragment : Fragment() {
         binding.signupEmail.addTextChangedListener {
             checkData()
         }
-        binding.signupCurp.addTextChangedListener {
+        binding.signupPhone.addTextChangedListener {
             checkData()
         }
         binding.signupPassword.addTextChangedListener {
@@ -91,16 +92,16 @@ class SignupFragment : Fragment() {
             binding.signupFirstname.text.toString(),
             binding.signupLastname.text.toString(),
             binding.signupEmail.text.toString(),
-            binding.signupCurp.text.toString(),
+            binding.signupPhone.text.toString(),
             binding.signupPassword.text.toString())
     }
 
-    fun checkData(){
+    private fun checkData(){
         viewModel.checkData(
             binding.signupFirstname.text.toString(),
             binding.signupLastname.text.toString(),
             binding.signupEmail.text.toString(),
-            binding.signupCurp.text.toString(),
+            binding.signupPhone.text.toString(),
             binding.signupPassword.text.toString())
     }
 }

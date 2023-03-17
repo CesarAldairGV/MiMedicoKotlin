@@ -11,6 +11,7 @@
         android:id="@+id/chat_cardData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:contentPadding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,21 +22,26 @@
 
             <TextView
                 android:id="@+id/chat_subj"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Subject"
+                android:layout_marginEnd="10dp"
+                android:textSize="20sp"
+                android:text="Title"
+                app:layout_constraintEnd_toStartOf="@+id/chat_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/chat_body"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:text="Body"
+                app:layout_constraintEnd_toStartOf="@+id/chat_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chat_subj" />
 
@@ -45,8 +51,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="0dp"
                 android:text="Medico:"
-                android:paddingBottom="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chat_body" />
 
@@ -57,8 +65,10 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="MedicName"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/chat_img"
                 app:layout_constraintStart_toEndOf="@+id/chat_medic_text"
                 app:layout_constraintTop_toBottomOf="@+id/chat_body" />
 
@@ -68,11 +78,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Calificar y Comentar Medico"
+                android:text="@string/chat_comment"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chat_medic_text" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/chat_img"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                tools:src="@tools:sample/avatars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -115,7 +140,7 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:ems="10"
-                android:hint="Mensaje"
+                android:hint="@string/chat_message"
                 android:inputType="text" />
 
             <ImageButton

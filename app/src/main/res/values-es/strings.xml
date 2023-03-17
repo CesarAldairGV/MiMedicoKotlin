@@ -82,6 +82,7 @@
     <string name="consult_chat_button">Chat</string>
 
     <string name="chat_label">Chat</string>
-    <string name="chat_message">Mensaje</string>
+    <string name="chat_message">Escribe aqui</string>
+    <string name="chat_comment">Comentar</string>
 
 </resources>
