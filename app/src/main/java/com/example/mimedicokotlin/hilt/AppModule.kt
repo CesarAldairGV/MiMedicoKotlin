@@ -1,11 +1,10 @@
 package com.example.mimedicokotlin.hilt
 
-import com.example.mimedicokotlin.services.*
+import com.example.mimedicokotlinfirebase.services.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.w3c.dom.Comment
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -15,19 +14,26 @@ class AppModule {
     fun providesUserService(): UserService = UserService()
 
     @Provides
-    fun providesAuthService(): AuthService = AuthService(providesUserService())
+    fun providesMedicService(): MedicService = MedicService()
 
     @Provides
-    fun providesPetitionService(): PetitionService = PetitionService(providesAuthService())
+    fun providesStorageService(): StorageService = StorageService()
 
     @Provides
-    fun providesConsultService(): ConsultService = ConsultService()
+    fun providesUserAuthService(): UserAuthService = UserAuthService(providesUserService())
+
+    @Provides
+    fun providesPetitionService(): PetitionService =
+        PetitionService(providesUserService(), providesStorageService())
+
+    @Provides
+    fun providesConsultService(): ConsultService = ConsultService(providesStorageService())
 
     @Provides
     fun providesProposalService(): ProposalService =
-        ProposalService(providesPetitionService(), providesConsultService())
+        ProposalService(providesMedicService(),providesConsultService(),providesPetitionService())
 
     @Provides
     fun providesCommentService(): CommentService =
-        CommentService(providesAuthService())
+        CommentService(providesUserService(), providesConsultService())
 }

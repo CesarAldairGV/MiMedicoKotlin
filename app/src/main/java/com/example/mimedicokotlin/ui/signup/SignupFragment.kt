@@ -38,7 +38,7 @@ class SignupFragment : Fragment() {
             if(it.emailError != null){
                 binding.signupEmail.error = getString(R.string.signup_email_err)
             }
-            if(it.curpError != null){
+            if(it.phoneError != null){
                 binding.signupCurp.error = getString(R.string.signup_curp_err)
             }
             if(it.passwordError != null){

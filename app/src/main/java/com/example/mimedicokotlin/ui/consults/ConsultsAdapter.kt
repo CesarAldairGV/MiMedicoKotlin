@@ -43,7 +43,7 @@ class ConsultsAdapter(options: FirestoreRecyclerOptions<ConsultItem>):
             ConsultItem(
                 consultId = this.id,
                 medicName = this["medicName",String::class.java]!!,
-                subject = this["subject",String::class.java]!!,
+                subject = this["title",String::class.java]!!,
                 date = this["date",String::class.java]!!
             )
     }

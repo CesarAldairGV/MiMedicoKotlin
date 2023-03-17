@@ -13,6 +13,8 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MiMedicoKotlin"
-include ':app',':videochat-feature'
+
+include ':app',':videochat-feature',':firebase-services'
 project(':videochat-feature').projectDir = file('C:\\Users\\aldai\\Projects\\MiMedicoKotlinVideochat\\videochat-feature')
+project(':firebase-services').projectDir = file('C:\\Users\\aldai\\Projects\\MiMedicoKotlinFirebase\\firebase-services')
 
