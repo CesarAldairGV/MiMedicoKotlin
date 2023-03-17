@@ -26,11 +26,11 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
+        binding.authSignupBtn.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_SignupFragment)
         }
 
-        binding.button.setOnClickListener {
+        binding.authLoginBtn.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_LoginFragment)
         }
     }

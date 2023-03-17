@@ -39,7 +39,7 @@ class SignupFragment : Fragment() {
                 binding.signupEmail.error = getString(R.string.signup_email_err)
             }
             if(it.phoneError != null){
-                binding.signupCurp.error = getString(R.string.signup_curp_err)
+                binding.signupCurp.error = getString(R.string.signup_phone_err)
             }
             if(it.passwordError != null){
                 binding.signupPassword.error = getString(R.string.signup_password_err)

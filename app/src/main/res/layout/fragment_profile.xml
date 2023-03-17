@@ -36,7 +36,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/textline"
-                    android:text="@string/home_text"
+                    android:text="@string/profile_text"
                     android:textSize="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/home_name"
+                    android:text="@string/profile_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_profile_text" />
 
@@ -59,6 +59,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
                     android:textSize="16sp"
+                    android:text="Name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_name_text" />
 
@@ -68,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
-                    android:text="@string/home_email"
+                    android:text="@string/profile_email"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_name_field" />
 
@@ -79,6 +80,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
                     android:textSize="16sp"
+                    android:text="Email"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_email_text" />
 
@@ -88,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
-                    android:text="@string/home_curp"
+                    android:text="@string/profile_phone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_email_field" />
 
@@ -100,6 +102,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:textSize="16sp"
+                    android:text="Phone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_curp_text" />
