@@ -1,4 +1,4 @@
-package com.example.mimedicokotlin.ui.home
+package com.example.mimedicokotlin.ui.profile
 
 data class ProfileData(
     val name: String? = null,

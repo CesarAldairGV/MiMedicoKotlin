@@ -1,15 +1,12 @@
 package com.example.mimedicokotlin.ui.chat
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -21,6 +18,7 @@ import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentChatBinding
 import com.example.mimedicokotlin.ui.chat.sendcomment.SendCommentFragment
 import com.example.mimedicokotlin.ui.chat.sendimage.SendImageDialogFragment
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +34,7 @@ class ChatFragment : Fragment() {
     private lateinit var consultId: String
     private lateinit var medicId: String
     private lateinit var userId: String
+    private lateinit var medicName: String
 
     private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
 
@@ -82,6 +81,13 @@ class ChatFragment : Fragment() {
             binding.chatMedic.text = it.medicName
             medicId = it.medicId
             userId = it.userId
+            medicName = it.medicName
+
+            if(it.imgUrl != null){
+                binding.chatImg.visibility = View.VISIBLE
+                Picasso.get().load(it.imgUrl).into(binding.chatImg)
+                binding.chatImg.visibility = View.VISIBLE
+            }
 
             if(it.isFinished){
                 binding.chatMsgImg.isEnabled = false
@@ -121,7 +127,7 @@ class ChatFragment : Fragment() {
             if(!checkPermissions()){
                 requestPermissionLauncher.launch(permissions)
             }else{
-                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId, "consultId" to consultId)
+                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId, "consultId" to consultId,"peerName" to medicName)
                 findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
             }
         }

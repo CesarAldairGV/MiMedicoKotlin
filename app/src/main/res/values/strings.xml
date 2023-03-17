@@ -1,23 +1,21 @@
 <resources>
-    <string name="app_name">My Medic For Patients</string>
+    <string name="app_name">MiMedico For Patients</string>
     <string name="title_activity_home">Home</string>
 
     <string name="menu_logout">Log Out</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_petitions">Petitions</string>
-    <string name="menu_consults">Consults</string>
+    <string name="menu_consults">Consultancies</string>
 
-    <string name="main_text">My Medic</string>
-    <string name="main_button1">I don\'t have an account</string>
-    <string name="main_button2">I already have an account</string>
+    <string name="auth_text">MiMedico</string>
+    <string name="auth_signup_btn">I don\'t have an account</string>
+    <string name="auth_login_btn">I already have an account</string>
 
     <string name="login_label">Login</string>
     <string name="login_text">Login</string>
     <string name="login_email_text">Email:</string>
-    <string name="login_email_hint">johndoe@gmail.com</string>
     <string name="login_email_err">Email must be valid</string>
     <string name="login_password_text">Password:</string>
-    <string name="login_password_hint">CON95KER</string>
     <string name="login_password_err">Password must be longer than 5 characters</string>
     <string name="login_send">Login</string>
     <string name="login_err1">Incorrect Credentials</string>
@@ -26,19 +24,14 @@
     <string name="signup_label">Sign Up</string>
     <string name="signup_text">Sign Up</string>
     <string name="signup_firstname_text">First Name:</string>
-    <string name="signup_firstname_hint">John</string>
     <string name="signup_firstname_err">Name must not be empty</string>
     <string name="signup_lastname_text">Last Name:</string>
-    <string name="signup_lastname_hint">Doe</string>
     <string name="signup_lastname_err">Last name must not be empty</string>
     <string name="signup_email_text">Email:</string>
-    <string name="signup_email_hint">johndoe@gmail.com</string>
     <string name="signup_email_err">Email must be valid</string>
-    <string name="signup_curp_text">Curp:</string>
-    <string name="signup_curp_hint">JD212121JOLKOSKE1D</string>
-    <string name="signup_curp_err">The curp must be 18 characters long</string>
+    <string name="signup_phone_text">Phone:</string>
+    <string name="signup_phone_err">The number must be 10 digits</string>
     <string name="signup_password_text">Password:</string>
-    <string name="signup_password_hint">CON95KER</string>
     <string name="signup_password_err">Password must be longer than 5 characters</string>
     <string name="signup_send">Sign Up</string>
     <string name="signup_err1">Incorrect Credentials</string>
@@ -46,22 +39,19 @@
     <string name="signup_success_label">Signup Success</string>
     <string name="signup_success_text">You have been sent a confirmation email, Sign Up to get started</string>
 
-    <string name="home_text">My Profile</string>
-    <string name="home_name">Name: </string>
-    <string name="home_email">Email: </string>
-    <string name="home_curp">Curp: </string>
+    <string name="profile_text">My Profile</string>
+    <string name="profile_name">Name: </string>
+    <string name="profile_email">Email: </string>
+    <string name="profile_phone">Phone: </string>
 
     <string name="petitions_label">Petitions</string>
 
-    <string name="item_petition_subject">Item</string>
-    <string name="item_petition_date">Date</string>
-    <string name="item_petition_body">Body</string>
     <string name="item_petition_button">View proposals</string>
 
     <string name="addp_label">New Petition</string>
     <string name="addp_text">New Petition</string>
-    <string name="addp_subject">Subject</string>
-    <string name="addp_subject_err">Must contain between 5 and 30 characters</string>
+    <string name="addp_title">Title</string>
+    <string name="addp_title_err">Must contain between 5 and 30 characters</string>
     <string name="addp_body">Abstract</string>
     <string name="addp_body_err">Must contain between 30 and 280 characters</string>
     <string name="addp_image">Image(Optional)</string>
@@ -69,8 +59,6 @@
     <string name="addp_sended">Request sent successfully</string>
     <string name="addp_err1">An error occurred</string>
 
-    <string name="item_proposal_medicname">Medical</string>
-    <string name="item_proposal_date">Date</string>
     <string name="item_proposal_button">Show</string>
 
     <string name="proposals_label">Proposals</string>
@@ -89,12 +77,10 @@
     <string name="send_img_cancel">Cancel</string>
     <string name="send_img_accept">Accept</string>
 
-    <string name="consults_label">Consults</string>
+    <string name="consults_label">Consultancies</string>
     <string name="consult_chat_button">Chat</string>
 
     <string name="chat_label">Chat</string>
-    <string name="chat_message">Message</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="chat_message">Write Here</string>
+    <string name="chat_comment">Comment</string>
 </resources>

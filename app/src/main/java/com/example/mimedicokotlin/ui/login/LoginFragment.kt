@@ -43,6 +43,7 @@ class LoginFragment : Fragment() {
             }else if(it.loginError == 2){
                 Toast.makeText(activity, getString(R.string.login_err1), Toast.LENGTH_LONG).show()
             }
+            binding.loginProgressBar.visibility = View.GONE
             if(it.loginSuccess){
                 findNavController().navigate(R.id.action_LoginFragment_to_HomeActivity)
             }

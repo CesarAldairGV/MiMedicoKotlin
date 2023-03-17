@@ -35,7 +35,7 @@ class AddPetitionFragment : Fragment() {
     ): View? {
         _binding = FragmentAddPetitionBinding.inflate(inflater, container, false)
 
-        val subjectWatcher = binding.addpSubject.doAfterTextChanged {
+        val subjectWatcher = binding.addpTitle.doAfterTextChanged {
             checkData()
         }
 
@@ -45,7 +45,7 @@ class AddPetitionFragment : Fragment() {
 
         viewModel.formState.observe(viewLifecycleOwner){
             if(it.subjectError == 1){
-                binding.addpSubject.error = getString(R.string.addp_subject_err)
+                binding.addpTitle.error = getString(R.string.addp_title_err)
             }
             if(it.bodyError == 1){
                 binding.addpBody.error = getString(R.string.addp_body_err)
@@ -56,14 +56,14 @@ class AddPetitionFragment : Fragment() {
         viewModel.resultState.observe(viewLifecycleOwner){
             if(it){
                 Toast.makeText(activity, getString(R.string.addp_sended), Toast.LENGTH_LONG).show()
-                binding.addpSubject.removeTextChangedListener(subjectWatcher)
+                binding.addpTitle.removeTextChangedListener(subjectWatcher)
                 binding.addpBody.removeTextChangedListener(bodyWatcher)
-                binding.addpSubject.text.clear()
+                binding.addpTitle.text.clear()
                 binding.addpBody.text.clear()
                 binding.addpImage.setImageResource(android.R.color.transparent)
                 binding.addpButtonAction.isEnabled = false
                 isImageSelected = false
-                binding.addpSubject.addTextChangedListener(subjectWatcher)
+                binding.addpTitle.addTextChangedListener(subjectWatcher)
                 binding.addpBody.addTextChangedListener(bodyWatcher)
                 binding.addpProgressBar.visibility = View.GONE
             }else{
@@ -88,13 +88,13 @@ class AddPetitionFragment : Fragment() {
 
     private fun checkData(){
         viewModel.checkData(
-            binding.addpSubject.text.toString(),
+            binding.addpTitle.text.toString(),
             binding.addpBody.text.toString(),
         )
     }
 
     private fun sendPetition(){
-        val subject = binding.addpSubject.text.toString()
+        val subject = binding.addpTitle.text.toString()
         val body = binding.addpBody.text.toString()
         if(isImageSelected) {
             val bitmap = (binding.addpImage.drawable as BitmapDrawable).bitmap

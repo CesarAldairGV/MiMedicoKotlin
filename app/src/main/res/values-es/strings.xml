@@ -6,19 +6,17 @@
     <string name="menu_logout">Cerrar Sesion</string>
     <string name="menu_profile">Perfil</string>
     <string name="menu_petitions">Peticiones</string>
-    <string name="menu_consults">Consultas</string>
+    <string name="menu_consults">Asesorias</string>
 
-    <string name="main_text">Mi Medico</string>
-    <string name="main_button1">No tengo una cuenta</string>
-    <string name="main_button2">Ya tengo una cuenta</string>
+    <string name="auth_text">MiMedico</string>
+    <string name="auth_signup_btn">No tengo una cuenta</string>
+    <string name="auth_login_btn">Ya tengo una cuenta</string>
 
     <string name="login_label">Iniciar Sesion</string>
     <string name="login_text">Iniciar Sesion</string>
     <string name="login_email_text">Email:</string>
-    <string name="login_email_hint">johndoe@gmail.com</string>
     <string name="login_email_err">El email debe ser valido</string>
     <string name="login_password_text">Contraseña:</string>
-    <string name="login_password_hint">CON95KER</string>
     <string name="login_password_err">La contraseña debe ser mayor de 5 caracteres</string>
     <string name="login_send">Iniciar Sesion</string>
     <string name="login_err1">Credenciales Incorrrectas</string>
@@ -27,19 +25,14 @@
     <string name="signup_label">Registrarse</string>
     <string name="signup_text">Registrarse</string>
     <string name="signup_firstname_text">Nombre:</string>
-    <string name="signup_firstname_hint">John</string>
     <string name="signup_firstname_err">El nombre no debe estar vacio</string>
     <string name="signup_lastname_text">Apellidos:</string>
-    <string name="signup_lastname_hint">Doe</string>
     <string name="signup_lastname_err">Los apellidos no debe estar vacio</string>
     <string name="signup_email_text">Email:</string>
-    <string name="signup_email_hint">johndoe@gmail.com</string>
     <string name="signup_email_err">El email debe ser valido</string>
-    <string name="signup_curp_text">Curp:</string>
-    <string name="signup_curp_hint">JD212121JOLKOSKE1D</string>
-    <string name="signup_curp_err">El curp debe tener 18 caracteres</string>
+    <string name="signup_phone_text">Telefono:</string>
+    <string name="signup_phone_err">El numero deben ser 10 digitos</string>
     <string name="signup_password_text">Contraseña:</string>
-    <string name="signup_password_hint">CON95KER</string>
     <string name="signup_password_err">La contraseña debe ser mayor de 5 caracteres</string>
     <string name="signup_send">Registrarse</string>
     <string name="signup_err1">Credenciales Incorrrectas</string>
@@ -47,22 +40,19 @@
     <string name="signup_success_label">Registro Correcto</string>
     <string name="signup_success_text">Se te ha enviado un email de confirmacion, Inicia Sesion para empezar</string>
 
-    <string name="home_text">Mi Perfil</string>
-    <string name="home_name">Nombre: </string>
-    <string name="home_email">Email: </string>
-    <string name="home_curp">Curp: </string>
+    <string name="profile_text">Mi Perfil</string>
+    <string name="profile_name">Nombre: </string>
+    <string name="profile_email">Email: </string>
+    <string name="profile_phone">Telefono: </string>
 
     <string name="petitions_label">Peticiones</string>
 
-    <string name="item_petition_subject">Tema</string>
-    <string name="item_petition_date">Fecha</string>
-    <string name="item_petition_body">Cuerpo</string>
     <string name="item_petition_button">Ver propuestas</string>
 
     <string name="addp_label">Nueva Peticion</string>
     <string name="addp_text">Nueva Peticion</string>
-    <string name="addp_subject">Caso</string>
-    <string name="addp_subject_err">Debe contener entre 5 y 30 caracteres</string>
+    <string name="addp_title">Titulo</string>
+    <string name="addp_title_err">Debe contener entre 5 y 30 caracteres</string>
     <string name="addp_body">Resumen</string>
     <string name="addp_body_err">Debe contener entre 30 y 280 caracteres</string>
     <string name="addp_image">Imagen(Opcional)</string>
@@ -70,8 +60,6 @@
     <string name="addp_sended">Peticion enviada correctamente</string>
     <string name="addp_err1">Ocurrio un error</string>
 
-    <string name="item_proposal_medicname">Medico</string>
-    <string name="item_proposal_date">Fecha</string>
     <string name="item_proposal_button">Ver</string>
 
     <string name="proposals_label">Propuestas</string>
@@ -90,10 +78,11 @@
     <string name="send_img_cancel">Cancelar</string>
     <string name="send_img_accept">Aceptar</string>
 
-    <string name="consults_label">Consultas</string>
+    <string name="consults_label">Asesorias</string>
     <string name="consult_chat_button">Chat</string>
 
     <string name="chat_label">Chat</string>
-    <string name="chat_message">Mensaje</string>
+    <string name="chat_message">Escribe aqui</string>
+    <string name="chat_comment">Comentar</string>
 
 </resources>

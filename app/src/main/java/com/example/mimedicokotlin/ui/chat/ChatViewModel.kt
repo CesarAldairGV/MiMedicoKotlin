@@ -51,6 +51,7 @@ class ChatViewModel @Inject constructor(
         medicId = this.medicId,
         isFinished = this.finished,
         hasComment = this.comment,
-        userId = this.userId
+        userId = this.userId,
+        imgUrl = this.imgUrl
     )
 }

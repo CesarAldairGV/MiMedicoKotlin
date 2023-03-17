@@ -1,4 +1,4 @@
-package com.example.mimedicokotlin.ui.home
+package com.example.mimedicokotlin.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,13 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.mimedicokotlinfirebase.dto.User
 import com.example.mimedicokotlinfirebase.services.UserAuthService
 import com.example.mimedicokotlinfirebase.services.UserService
-import com.google.firebase.firestore.DocumentSnapshot
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class PorfileViewModel @Inject constructor(
     private val userService : UserService,
     private val authService: UserAuthService): ViewModel() {
 

@@ -10,7 +10,7 @@ import com.example.mimedicokotlin.R
 import com.squareup.picasso.Picasso
 
 class PetitionItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val subject: TextView = itemView.findViewById(R.id.item_pet_subj)
+    private val subject: TextView = itemView.findViewById(R.id.item_pet_title)
     private val date: TextView = itemView.findViewById(R.id.item_pet_date)
     private val body: TextView = itemView.findViewById(R.id.item_pet_body)
     private val img: ImageView = itemView.findViewById(R.id.item_pet_img)

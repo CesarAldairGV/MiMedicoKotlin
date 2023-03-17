@@ -7,5 +7,6 @@ data class ConsultData(
     val medicId: String,
     val isFinished: Boolean,
     val hasComment: Boolean,
-    val userId: String
+    val userId: String,
+    val imgUrl: String?
 )
