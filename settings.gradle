@@ -13,4 +13,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "MiMedicoKotlin"
-include ':app'
+include ':app',':videochat-feature'
+project(':videochat-feature').projectDir = file('C:\\Users\\aldai\\Projects\\MiMedicoKotlinVideochat\\videochat-feature')
+
