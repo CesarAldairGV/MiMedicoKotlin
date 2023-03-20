@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Medico:"
+                android:text="@string/chat_medic_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chat_body" />
 

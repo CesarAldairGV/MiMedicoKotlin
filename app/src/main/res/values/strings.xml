@@ -81,6 +81,7 @@
     <string name="consult_chat_button">Chat</string>
 
     <string name="chat_label">Chat</string>
+    <string name="chat_medic_text">Medic: </string>
     <string name="chat_message">Write Here</string>
     <string name="chat_comment">Comment</string>
 </resources>

@@ -69,14 +69,14 @@ class LoginFragment : Fragment() {
         _binding = null
     }
 
-    fun checkData(){
+    private fun checkData(){
         loginViewModel.checkData(
             binding.loginEmail.text.toString(),
             binding.loginPassword.text.toString()
         )
     }
 
-    fun login(){
+    private fun login(){
         loginViewModel.login(
             binding.loginEmail.text.toString(),
             binding.loginPassword.text.toString()
