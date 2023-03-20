@@ -27,6 +27,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Videochat"
+                android:enabled="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chat_medic_text" />
 

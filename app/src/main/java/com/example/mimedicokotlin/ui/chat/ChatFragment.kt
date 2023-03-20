@@ -34,16 +34,15 @@ class ChatFragment : Fragment() {
     private lateinit var consultId: String
     private lateinit var medicId: String
     private lateinit var userId: String
-    private lateinit var medicName: String
+    private lateinit var peerName: String
 
     private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
 
-    val requestPermissionLauncher =
+    private val requestPermission =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
             val count = it.values.stream().filter{ it }.count()
             if(count == 2L){
-                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId)
-                findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
+                launchVideochat()
             }
         }
 
@@ -79,9 +78,6 @@ class ChatFragment : Fragment() {
             binding.chatSubj.text = it.subject
             binding.chatBody.text = it.body
             binding.chatMedic.text = it.medicName
-            medicId = it.medicId
-            userId = it.userId
-            medicName = it.medicName
 
             if(it.imgUrl != null){
                 binding.chatImg.visibility = View.VISIBLE
@@ -98,6 +94,12 @@ class ChatFragment : Fragment() {
                     binding.chatComment.visibility = View.VISIBLE
                 }
             }
+
+            medicId = it.medicId
+            userId = it.userId
+            peerName = it.medicName
+
+            binding.chatVideochat.isEnabled = true
         }
 
         viewModel.messageState.observe(viewLifecycleOwner){
@@ -125,16 +127,24 @@ class ChatFragment : Fragment() {
 
         binding.chatVideochat.setOnClickListener{
             if(!checkPermissions()){
-                requestPermissionLauncher.launch(permissions)
+                requestPermission.launch(permissions)
             }else{
-                val bundle = bundleOf("myUsername" to userId, "peerUsername" to medicId, "consultId" to consultId,"peerName" to medicName)
-                findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
+                launchVideochat()
             }
         }
 
         binding.chatMsgSend.isEnabled = false
         viewModel.getConsultData(consultId)
         return binding.root
+    }
+
+    private fun launchVideochat(){
+        val bundle = bundleOf(
+            "myId" to medicId,
+            "peerId" to userId,
+            "consultId" to consultId,
+            "peerName" to peerName)
+        findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
     }
 
     private fun checkPermissions(): Boolean {

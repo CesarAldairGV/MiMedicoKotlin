@@ -92,10 +92,10 @@
         android:label="Videochat"
         tools:layout="@layout/fragment_videochat" >
         <argument
-            android:name="myUsername"
+            android:name="myId"
             app:argType="string" />
         <argument
-            android:name="peerUsername"
+            android:name="peerId"
             app:argType="string" />
         <argument
             android:name="consultId"
