@@ -140,8 +140,8 @@ class ChatFragment : Fragment() {
 
     private fun launchVideochat(){
         val bundle = bundleOf(
-            "myId" to medicId,
-            "peerId" to userId,
+            "myId" to userId,
+            "peerId" to medicId,
             "consultId" to consultId,
             "peerName" to peerName)
         findNavController().navigate(R.id.action_ChatFragment_to_VideochatFragment, bundle)
