@@ -18,8 +18,8 @@ class ProposalViewModel @Inject constructor(
     private val _proposalInfo: MutableLiveData<ProposalInfo> = MutableLiveData();
     val proposalInfo: LiveData<ProposalInfo> get() = _proposalInfo
 
-    private val _refuseState: MutableLiveData<Boolean> = MutableLiveData();
-    val refuseState: LiveData<Boolean> get() = _refuseState
+    private val _rejectState: MutableLiveData<Boolean> = MutableLiveData();
+    val rejectState: LiveData<Boolean> get() = _rejectState
 
     private val _acceptState: MutableLiveData<Boolean> = MutableLiveData();
     val acceptState: LiveData<Boolean> get() = _acceptState
@@ -32,8 +32,10 @@ class ProposalViewModel @Inject constructor(
         }
     }
 
-    fun refuse(proposalId: String){
-
+    fun reject(proposalId: String){
+        viewModelScope.launch {
+            _rejectState.value = proposalService.rejectProposal(proposalId)
+        }
     }
 
     fun accept(proposalId: String){

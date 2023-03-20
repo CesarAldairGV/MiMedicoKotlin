@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -57,8 +58,20 @@ class ProposalFragment : Fragment() {
             findNavController().navigate(R.id.action_ProposalFragment_to_ConsultFragment)
         }
 
+        viewModel.rejectState.observe(viewLifecycleOwner){
+            if(it){
+                Toast.makeText(context,"Proposal Refused Correctly!",Toast.LENGTH_LONG).show()
+                binding.propRefuse.isEnabled = false
+                binding.propAccept.isEnabled = false
+            }
+        }
+
         binding.propAccept.setOnClickListener {
             viewModel.accept(arguments?.getString("proposalId")!!)
+        }
+
+        binding.propRefuse.setOnClickListener{
+            viewModel.reject(arguments?.getString("proposalId")!!)
         }
 
         val linearLayoutManager = LinearLayoutManager(requireContext())
