@@ -3,6 +3,7 @@ package com.example.mimedicokotlin.ui.chat
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mimedicokotlin.R
@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ChatFragment : Fragment() {
+class ChatFragment : Fragment(){
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
@@ -90,8 +90,9 @@ class ChatFragment : Fragment() {
                 binding.chatMsgField.isEnabled = false
                 binding.chatMsgSend.isEnabled = false
                 binding.chatCardMsj.visibility = View.GONE
+                binding.chatVideochat.isEnabled = false
                 if(!it.hasComment){
-                    binding.chatComment.visibility = View.VISIBLE
+                    binding.chatComment.isEnabled = true
                 }
             }
 
@@ -123,6 +124,11 @@ class ChatFragment : Fragment() {
             val fragmentManager = this@ChatFragment.parentFragmentManager
             val newFragment = SendCommentFragment(this@ChatFragment.consultId,medicId)
             newFragment.show(fragmentManager, "dialog")
+            newFragment.setFragmentResultListener("status"){str,bundle->
+                Log.d("ChatFragment",str)
+                val isCommentSent = bundle.getBoolean("isCommentSent")
+                if(isCommentSent) binding.chatComment.isEnabled = false
+            }
         }
 
         binding.chatVideochat.setOnClickListener{
@@ -133,7 +139,6 @@ class ChatFragment : Fragment() {
             }
         }
 
-        binding.chatMsgSend.isEnabled = false
         viewModel.getConsultData(consultId)
         return binding.root
     }

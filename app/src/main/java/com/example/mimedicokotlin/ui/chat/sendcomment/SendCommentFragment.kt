@@ -1,6 +1,7 @@
 package com.example.mimedicokotlin.ui.chat.sendcomment
 
 import android.app.Dialog
+import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.example.mimedicokotlin.R
 import com.example.mimedicokotlin.databinding.FragmentSendCommentBinding
@@ -25,11 +28,6 @@ class SendCommentFragment(
     private var _binding: FragmentSendCommentBinding? = null
     private val binding get() = _binding!!
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +35,10 @@ class SendCommentFragment(
         _binding = FragmentSendCommentBinding.inflate(inflater, container, false)
 
         viewModel.result.observe(viewLifecycleOwner){
-            if(it) dismiss()
+            if(it) {
+                setFragmentResult("status", bundleOf("isCommentSent" to true))
+                dismiss()
+            }
         }
 
         binding.chatSendComCancel.setOnClickListener{
@@ -56,5 +57,6 @@ class SendCommentFragment(
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return dialog
     }
+
 
 }

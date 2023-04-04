@@ -27,9 +27,9 @@ class CommentsAdapter(options: FirestoreRecyclerOptions<CommentItem>) :
     companion object {
         fun getAdapter(medicId: String): CommentsAdapter {
 
-            val query = FirebaseFirestore.getInstance().collection("medics")
-                .document(medicId)
-                .collection("comments")
+            val query = FirebaseFirestore.getInstance().collection("comments")
+                .whereEqualTo("medicId",medicId)
+                .orderBy("timestamp")
 
             val options = FirestoreRecyclerOptions.Builder<CommentItem>()
                 .setQuery(query,
